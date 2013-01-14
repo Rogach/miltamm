@@ -21,7 +21,7 @@ object Util {
         }
       println(prefix + mess)
     }
-    def log(mess:String):Unit = log(mess, INFO)
+    def info(mess:String):Unit = log(mess, INFO)
     def error(mess:String) = log(mess, ERROR)
     def warn(mess:String) = log(mess, WARN)
     def success(mess:String) = log(mess, SUCCESS)

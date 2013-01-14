@@ -1,60 +1,30 @@
 package org.rogach.miltamm
 
 object BuildCompiler {
-  def compile_old(file: String) = {
+  def compile(file: String) = {
+    Util.log.info("Compiling build file...")
     val startTime = System.currentTimeMillis
     try {
       val c = new Compiler
       val classes = c.compile(
         """
         |import org.rogach.miltamm.BuildImports._
-        |class Build {
+        |class Build extends org.rogach.miltamm.BuildTemplate {
         |%s
         |}
         |""".stripMargin format io.Source.fromFile(file).getLines.mkString("\n")
       )
-      classes.head.newInstance
+      val build = classes.head.newInstance.asInstanceOf[BuildTemplate]
+
       val endTime = System.currentTimeMillis
       Util.log.success("Compiled build file, time elapsed: %d s" format (endTime - startTime)/1000)
     } catch { case e: Throwable =>
+      println(e.getMessage)
       Util.log.error("Failed to compile build file '%s'" format file)
-      e.printStackTrace
       sys.exit(1)
     }
   }
   
-  def compile(file: String) = {
-    val startTime = System.currentTimeMillis
-    try {
-      import scala.reflect.runtime._;
-      import scala.tools.reflect.ToolBox;
-      import scala.tools.reflect.FrontEnd;
-
-      val lines = io.Source.fromFile(file).getLines
-
-      val toolbox = universe.runtimeMirror(getClass.getClassLoader).mkToolBox(new FrontEnd {
-        def interactive() = ()
-        def display(info: Info) = {
-          println("Compile error")
-          println(info.pos)
-          println(info.msg)
-        }
-      })
-      toolbox.eval(toolbox.parse(
-        """
-        |class Build { 
-        |import org.rogach.miltamm.BuildImports._;
-        |%s
-        |}
-        |new Build
-        |""".stripMargin format lines.mkString("\n")))
-      val endTime = System.currentTimeMillis
-      Util.log.success("Compiled build file, time elapsed: %d s" format (endTime - startTime)/1000)
-    } catch { case e: Throwable =>
-      Util.log.error("Failed to compile build file '%s'" format file)
-      sys.exit(1)
-    }
-  }
 }
 
 // from habrahabr.ru
