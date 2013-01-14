@@ -28,4 +28,17 @@ trait Keys {
   def bool(q: String): Key[Boolean] = Key(() => ask(q, boolConverter))
   
   def string(q: String): Key[String] = Key(() => ask(q, Right(_)))
+  
+  def int(q: String): Key[Int] = Key(() => ask(q, x => Right(x.trim.toInt)))
+  
+  def select(q: String, vals: String*): Key[String] = {
+    val header = q + "\n" + vals.zipWithIndex.map { case (s, i) => "%2d - %s" format (i+1, s) }.mkString("\n")
+    val parser = (v: String) => {
+      val i = v.trim.toInt
+      if (i > 0 && i <= vals.size) {
+        Right(vals(i-1))
+      } else Left("Please input number in range %d--%d" format (1, vals.size))
+    }
+    Key(() => ask(header, parser))
+  }
 }
