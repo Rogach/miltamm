@@ -40,7 +40,7 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Key</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="nam">nam: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="q">q: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="calc">calc: () ⇒ <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>, <span name="parser">parser: (<span class="extype" name="scala.Predef.String">String</span>) ⇒ <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Key</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="calc">calc: () ⇒ <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
@@ -85,7 +85,7 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="org.rogach.miltamm.Key#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(nam:String,q:String,calc:()=&gt;A,parser:String=&gt;A):org.rogach.miltamm.Key[A]"></a>
+      <a id="&lt;init&gt;(calc:()=&gt;A):org.rogach.miltamm.Key[A]"></a>
       <a id="&lt;init&gt;:Key[A]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -93,7 +93,7 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Key</span><span class="params">(<span name="nam">nam: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="q">q: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="calc">calc: () ⇒ <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>, <span name="parser">parser: (<span class="extype" name="scala.Predef.String">String</span>) ⇒ <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>)</span>
+        <span class="name">Key</span><span class="params">(<span name="calc">calc: () ⇒ <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>)</span>
       </span>
       </h4>
       
@@ -346,19 +346,6 @@
       </span>
       </h4>
       
-    </li><li name="org.rogach.miltamm.Key#nam" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="nam:String"></a>
-      <a id="nam:String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">nam</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
-      </span>
-      </h4>
-      
     </li><li name="org.rogach.miltamm.Key#name" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="name(n:String):org.rogach.miltamm.Key[A]"></a>
       <a id="name(String):Key[A]"></a>
@@ -424,58 +411,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.rogach.miltamm.Key#parser" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="parser:String=&gt;A"></a>
-      <a id="parser:(String)⇒A"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">parser</span><span class="result">: (<span class="extype" name="scala.Predef.String">String</span>) ⇒ <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="org.rogach.miltamm.Key#q" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="q:String"></a>
-      <a id="q:String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">q</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="org.rogach.miltamm.Key#question" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="question(qst:String):org.rogach.miltamm.Key[A]"></a>
-      <a id="question(String):Key[A]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">question</span><span class="params">(<span name="qst">qst: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="org.rogach.miltamm.Key.A">A</span>]</span>
-      </span>
-      </h4>
-      
-    </li><li name="org.rogach.miltamm.Key#question" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="question:String"></a>
-      <a id="question:String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">question</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
-      </span>
-      </h4>
-      
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
