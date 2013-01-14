@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>Main - org.rogach.miltamm.Main</title>
-          <meta name="description" content="Main - org.rogach.miltamm.Main" />
-          <meta name="keywords" content="Main org.rogach.miltamm.Main" />
+          <title>Key - org.rogach.miltamm.Key</title>
+          <meta name="description" content="Key - org.rogach.miltamm.Key" />
+          <meta name="keywords" content="Key org.rogach.miltamm.Key" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -17,7 +17,7 @@
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../index.html';
-            var hash = 'org.rogach.miltamm.Main$';
+            var hash = 'org.rogach.miltamm.Key';
             var anchor = window.location.hash;
             var anchor_opt = '';
             if (anchor.length >= 1)
@@ -27,26 +27,26 @@
    	  </script>
     
         </head>
-        <body class="value">
+        <body class="type">
       <div id="definition">
-        <img src="../../../lib/object_big.png" />
+        <img src="../../../lib/class_big.png" />
         <p id="owner"><a href="../../package.html" class="extype" name="org">org</a>.<a href="../package.html" class="extype" name="org.rogach">rogach</a>.<a href="package.html" class="extype" name="org.rogach.miltamm">miltamm</a></p>
-        <h1>Main</h1>
+        <h1>Key</h1>
       </div>
 
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">object</span>
+        <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Main</span><span class="result"> extends <span class="extype" name="scala.App">App</span></span>
+        <span class="name">Key</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="nam">nam: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="q">q: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="calc">calc: () ⇒ <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>, <span name="parser">parser: (<span class="extype" name="scala.Predef.String">String</span>) ⇒ <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.App">App</span>, <span class="extype" name="scala.DelayedInit">DelayedInit</span>, <a href="../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -64,7 +64,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.rogach.miltamm.Main"><span>Main</span></li><li class="in" name="scala.App"><span>App</span></li><li class="in" name="scala.DelayedInit"><span>DelayedInit</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.rogach.miltamm.Key"><span>Key</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -82,7 +82,23 @@
 
       <div id="template">
         <div id="allMembers">
-        
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="org.rogach.miltamm.Key#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;(nam:String,q:String,calc:()=&gt;A,parser:String=&gt;A):org.rogach.miltamm.Key[A]"></a>
+      <a id="&lt;init&gt;:Key[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Key</span><span class="params">(<span name="nam">nam: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="q">q: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="calc">calc: () ⇒ <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>, <span name="parser">parser: (<span class="extype" name="scala.Predef.String">String</span>) ⇒ <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>)</span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
 
         
 
@@ -155,19 +171,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="scala.App#args" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="args:Array[String]"></a>
-      <a id="args:Array[String]"></a>
+    </li><li name="org.rogach.miltamm.Key#apply" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="apply():A"></a>
+      <a id="apply():A"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">args</span><span class="result">: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+        <span class="name">apply</span><span class="params">()</span><span class="result">: <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>App</dd></dl></div>
+      
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -181,6 +197,32 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.rogach.miltamm.Key#calc" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="calc(fn:=&gt;A):org.rogach.miltamm.Key[A]"></a>
+      <a id="calc(⇒A):Key[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">calc</span><span class="params">(<span name="fn">fn: ⇒ <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>)</span><span class="result">: <a href="" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="org.rogach.miltamm.Key.A">A</span>]</span>
+      </span>
+      </h4>
+      
+    </li><li name="org.rogach.miltamm.Key#calc" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="calc:()=&gt;A"></a>
+      <a id="calc:()⇒A"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">calc</span><span class="result">: () ⇒ <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>
+      </span>
+      </h4>
+      
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -197,19 +239,6 @@
                 <span class="name">@throws</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="scala.App#delayedInit" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="delayedInit(body:=&gt;Unit):Unit"></a>
-      <a id="delayedInit(⇒Unit):Unit"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">delayedInit</span><span class="params">(<span name="body">body: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>App → DelayedInit</dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -223,32 +252,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="equals(x$1:Any):Boolean"></a>
-      <a id="equals(Any):Boolean"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.App#executionStart" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="executionStart:Long"></a>
-      <a id="executionStart:Long"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">executionStart</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>App</dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -265,6 +268,32 @@
                 <span class="name">@throws</span><span class="args">()</span>
               
         </dd></dl></div>
+    </li><li name="org.rogach.miltamm.Key#flatMap" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="flatMap[B](f:A=&gt;org.rogach.miltamm.Key[B]):org.rogach.miltamm.Key[B]"></a>
+      <a id="flatMap[B]((A)⇒Key[B]):Key[B]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">flatMap</span><span class="tparams">[<span name="B">B</span>]</span><span class="params">(<span name="f">f: (<span class="extype" name="org.rogach.miltamm.Key.A">A</span>) ⇒ <a href="" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="org.rogach.miltamm.Key.flatMap.B">B</span>]</span>)</span><span class="result">: <a href="" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="org.rogach.miltamm.Key.flatMap.B">B</span>]</span>
+      </span>
+      </h4>
+      
+    </li><li name="org.rogach.miltamm.Key#get" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="get:Option[A]"></a>
+      <a id="get:Option[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">get</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="org.rogach.miltamm.Key.A">A</span>]</span>
+      </span>
+      </h4>
+      
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <a id="getClass():Class[_]"></a>
@@ -278,19 +307,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="hashCode():Int"></a>
-      <a id="hashCode():Int"></a>
+    </li><li name="org.rogach.miltamm.Key#isDefined" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="isDefined:Boolean"></a>
+      <a id="isDefined:Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+        <span class="name">isDefined</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+      
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -304,19 +333,58 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="scala.App#main" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="main(args:&lt;?&gt;):Unit"></a>
-      <a id="main(Array[String]):Unit"></a>
+    </li><li name="org.rogach.miltamm.Key#map" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="map[B](f:A=&gt;B):org.rogach.miltamm.Key[B]"></a>
+      <a id="map[B]((A)⇒B):Key[B]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">main</span><span class="params">(<span name="args">args: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">map</span><span class="tparams">[<span name="B">B</span>]</span><span class="params">(<span name="f">f: (<span class="extype" name="org.rogach.miltamm.Key.A">A</span>) ⇒ <span class="extype" name="org.rogach.miltamm.Key.map.B">B</span></span>)</span><span class="result">: <a href="" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="org.rogach.miltamm.Key.map.B">B</span>]</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>App</dd></dl></div>
+      
+    </li><li name="org.rogach.miltamm.Key#nam" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="nam:String"></a>
+      <a id="nam:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">nam</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.rogach.miltamm.Key#name" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="name(n:String):org.rogach.miltamm.Key[A]"></a>
+      <a id="name(String):Key[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">name</span><span class="params">(<span name="n">n: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="org.rogach.miltamm.Key.A">A</span>]</span>
+      </span>
+      </h4>
+      
+    </li><li name="org.rogach.miltamm.Key#name" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="name:String"></a>
+      <a id="name:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">name</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4>
+      
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -356,16 +424,55 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.rogach.miltamm.Main#opts" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="opts:org.rogach.scallop.ScallopConf{valbuildFile:org.rogach.scallop.ScallopOption[String];valtemplate:org.rogach.scallop.ScallopOption[String];valdestination:org.rogach.scallop.ScallopOption[String]}"></a>
-      <a id="opts:ScallopConf{.../*3definitionsintyperefinement*/}"></a>
+    </li><li name="org.rogach.miltamm.Key#parser" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="parser:String=&gt;A"></a>
+      <a id="parser:(String)⇒A"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">opts</span><span class="result">: <span class="extype" name="org.rogach.scallop.ScallopConf">ScallopConf</span> { ... /* 3 definitions in type refinement */ }</span>
+        <span class="name">parser</span><span class="result">: (<span class="extype" name="scala.Predef.String">String</span>) ⇒ <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.rogach.miltamm.Key#q" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="q:String"></a>
+      <a id="q:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">q</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.rogach.miltamm.Key#question" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="question(qst:String):org.rogach.miltamm.Key[A]"></a>
+      <a id="question(String):Key[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">question</span><span class="params">(<span name="qst">qst: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="org.rogach.miltamm.Key.A">A</span>]</span>
+      </span>
+      </h4>
+      
+    </li><li name="org.rogach.miltamm.Key#question" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="question:String"></a>
+      <a id="question:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">question</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
       
@@ -382,19 +489,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="toString():String"></a>
-      <a id="toString():String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -452,10 +546,14 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.App">
-              <h3>Inherited from <span class="extype" name="scala.App">App</span></h3>
-            </div><div class="parent" name="scala.DelayedInit">
-              <h3>Inherited from <span class="extype" name="scala.DelayedInit">DelayedInit</span></h3>
+        <div class="parent" name="scala.Serializable">
+              <h3>Inherited from <span class="extype" name="scala.Serializable">Serializable</span></h3>
+            </div><div class="parent" name="java.io.Serializable">
+              <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
+            </div><div class="parent" name="scala.Product">
+              <h3>Inherited from <span class="extype" name="scala.Product">Product</span></h3>
+            </div><div class="parent" name="scala.Equals">
+              <h3>Inherited from <span class="extype" name="scala.Equals">Equals</span></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <a href="../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
