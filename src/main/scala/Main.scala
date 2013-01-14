@@ -3,7 +3,7 @@ package org.rogach.miltamm
 import org.rogach.scallop._
 
 object Main extends App {
-  val cli = new ScallopConf(args) {
+  val opts = new ScallopConf(args) {
     version("Avalanche, %s b%s (%3$td.%3$tm.%3$tY %3$tH:%3$tM). Built with Scala %4$s" format (
       BuildInfo.version, 
       BuildInfo.buildinfoBuildnumber, 
@@ -14,7 +14,7 @@ object Main extends App {
              |  miltamm [OPTIONS]...  TEMPLATE_DIR  DESTINATION_DIR
              |""".stripMargin)
 
-    val buildFile = opt[String](descr = "location of template definition file. By default, miltamm uses miltamm-template.scala file right at the top of template directory.")
+    val buildFile = opt[String](descr = "location of template definition file. By default, miltamm uses miltamm-template.scala file right at the top of template directory")
     val template = trailArg[String]("template", descr = "location of template directory")
     val destination = trailArg[String]("destination", descr = "where to put the processed template files")
   }

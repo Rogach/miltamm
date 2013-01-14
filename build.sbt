@@ -8,7 +8,14 @@ version := "0.1.0"
 
 scalaVersion := "2.10.0"
 
-scalacOptions ++= Seq("-deprecation", "-unchecked", "-Xlint")
+scalacOptions ++= Seq(
+  "-deprecation",
+  "-unchecked", 
+  "-feature", 
+  "-language:postfixOps",
+  "-language:reflectiveCalls",
+  "-language:implicitConversions",
+  "-Xlint")
 
 seq(Revolver.settings: _*)
 
