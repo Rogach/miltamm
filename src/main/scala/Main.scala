@@ -19,5 +19,4 @@ object Main extends App {
     val destination = trailArg[String]("destination", descr = "where to put the processed template files")
   }
   
-  BuildImports.ask("apples?", BuildImports.boolConverter)
 }

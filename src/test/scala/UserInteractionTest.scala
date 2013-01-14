@@ -48,5 +48,27 @@ class UserInteractionTest extends MiltammTest with CapturingTest {
       out ==== "choose one:\n 1 - apple\n 2 - banana\n 3 - peach\n"
     }
   }
+  
+  test ("if user enters empty string, ask again") {
+    Console.withIn(new ByteArrayInputStream("\napple\n".getBytes)) {
+      val (out, err, answer) = captureOutput {
+        string("fruit?")()
+      }
+      answer ==== "apple"
+      err ==== ""
+      out ==== "fruit?\nfruit?\n"
+    }
+  }
+  
+  test ("regex matching") {
+    Console.withIn(new ByteArrayInputStream("apple\n12\n".getBytes)) {
+      val (out, err, answer) = captureOutput {
+        string("n?", "\\d+".r)()
+      }
+      answer ==== "12"
+      err ==== ""
+      out ==== "n?\nFailed to parse, sorry. The value must match the regex: \\d+\nn?\n"
+    }
+  }
 
 }

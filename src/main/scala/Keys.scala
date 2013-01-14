@@ -1,5 +1,7 @@
 package org.rogach.miltamm
 
+import util.matching.Regex
+
 trait Keys {
 
   def static[A](a: A) = Key(() => a)
@@ -9,8 +11,13 @@ trait Keys {
       Console.println(q)
       Console.flush()
       val in = Console.readLine()
+      if (in == null) {
+        Util.log.error("End of input, aborting compilation")
+        sys.exit(1)
+      }
       try {
-        conv(in).fold(println, return _)
+        if (in.trim.nonEmpty)
+          conv(in).fold(println, return _)
         () // stop compiler from warning me about something
       } catch { case e: Exception =>
         printf("Error while parsing: %s - %s\n", e.getClass, e.getMessage)
@@ -25,9 +32,17 @@ trait Keys {
     case _ => Left("Failed to parse boolean value")
   }
 
+  def check[A](rgx: Regex, conv: String => Either[String, A]): String => Either[String, A] = { x =>
+    x.trim match {
+      case rgx() => conv(x)
+      case _ => // no match
+        Left("Failed to parse, sorry. The value must match the regex: " + rgx)
+    }
+  }
+
   def bool(q: String): Key[Boolean] = Key(() => ask(q, boolConverter))
   
-  def string(q: String): Key[String] = Key(() => ask(q, Right(_)))
+  def string(q: String, rgx: Regex = ".*".r): Key[String] = Key(() => ask(q, check(rgx, Right(_))))
   
   def int(q: String): Key[Int] = Key(() => ask(q, x => Right(x.trim.toInt)))
   
