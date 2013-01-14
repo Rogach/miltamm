@@ -6,9 +6,10 @@ trait Keys {
 
   def static[A](a: A) = Key(() => a)
 
-  def ask[A](q: String, conv: String => Either[String, A]): A = {
+  def ask[A](q: String, prompt: String = "", conv: String => Either[String, A]): A = {
     while (true) {
       Console.println(q)
+      Console.print(prompt)
       Console.flush()
       val in = Console.readLine()
       if (in == null) {
@@ -40,11 +41,11 @@ trait Keys {
     }
   }
 
-  def bool(q: String): Key[Boolean] = Key(() => ask(q, boolConverter))
+  def bool(q: String, prompt: String = "[y/n]: "): Key[Boolean] = Key(() => ask(q, prompt, boolConverter))
   
-  def string(q: String, rgx: Regex = ".*".r): Key[String] = Key(() => ask(q, check(rgx, Right(_))))
+  def string(q: String, prompt: String = "> ", rgx: Regex = ".*".r): Key[String] = Key(() => ask(q, prompt, check(rgx, Right(_))))
   
-  def int(q: String): Key[Int] = Key(() => ask(q, x => Right(x.trim.toInt)))
+  def int(q: String, prompt: String = "(integer value): "): Key[Int] = Key(() => ask(q, prompt, x => Right(x.trim.toInt)))
   
   def select(q: String, vals: String*): Key[String] = {
     val header = q + "\n" + vals.zipWithIndex.map { case (s, i) => "%2d - %s" format (i+1, s) }.mkString("\n")
@@ -54,6 +55,6 @@ trait Keys {
         Right(vals(i-1))
       } else Left("Please input number in range %d--%d" format (1, vals.size))
     }
-    Key(() => ask(header, parser))
+    Key(() => ask(header, "(1-%d): " format vals.size, parser))
   }
 }
