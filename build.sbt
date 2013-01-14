@@ -39,3 +39,11 @@ buildInfoKeys := Seq[BuildInfoKey](
 )
 
 buildInfoPackage := "org.rogach.miltamm"
+
+site.settings
+
+site.includeScaladoc()
+
+ghpages.settings
+
+git.remoteRepo := "git@github.com:Rogach/miltamm.git"
