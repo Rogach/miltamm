@@ -1,10 +1,7 @@
 package org.rogach.miltamm
 
 case class Key[A](
-  nam: String, 
-  q: String, 
-  calc: () => A,
-  parser: String => A
+  calc: () => A
 ) {
 
   private[miltamm] var result: Option[A] = None
@@ -19,15 +16,15 @@ case class Key[A](
 
   def isDefined: Boolean = result.isDefined
 
-  private[miltamm] var _name: String = nam
+  private[miltamm] var _name: String = ""
   def name = _name
-  def name(n: String): Key[A] = copy(nam = n)
-  
-  def question = q
-  def question(qst: String): Key[A] = copy(q = qst)
+  def name(n: String): Key[A] = {
+    _name = n
+    this
+  }
   
   def calc(fn: => A) = copy(calc = () => fn)
 
-  def map[B](f: A => B): Key[B] = Key("", "", () => f(calc()), BuildImports.noParser)
-  def flatMap[B](f: A => Key[B]): Key[B] = Key("", "", () => f(calc()).apply, BuildImports.noParser)
+  def map[B](f: A => B): Key[B] = Key(() => f(calc()))
+  def flatMap[B](f: A => Key[B]): Key[B] = Key(() => f(calc()).apply)
 }

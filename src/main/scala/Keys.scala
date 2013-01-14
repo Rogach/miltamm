@@ -1,21 +1,31 @@
 package org.rogach.miltamm
 
 trait Keys {
-  def noParser[A] = (_:A) => sys.error("Non-implemented parser")
 
-  def static[A](a: A) = Key("", "", () => a, noParser)
+  def static[A](a: A) = Key(() => a)
 
-  def ask[A](q: String, conv: String => A): A = {
+  def ask[A](q: String, conv: String => Either[String, A]): A = {
     while (true) {
       Console.println(q)
       Console.flush()
       val in = Console.readLine()
       try {
-        return conv(in)
-      } catch { case e: Throwable =>
+        conv(in).fold(println, return _)
+        () // stop compiler from warning me about something
+      } catch { case e: Exception =>
         printf("Error while parsing: %s - %s\n", e.getClass, e.getMessage)
       }
     }
     sys.error("Won't happen")
   }
+  
+  val boolConverter = (_: String).head.toLower match {
+    case 'y' => Right(true)
+    case 'n' => Right(false)
+    case _ => Left("Failed to parse boolean value")
+  }
+
+  def bool(q: String): Key[Boolean] = Key(() => ask(q, boolConverter))
+  
+  def string(q: String): Key[String] = Key(() => ask(q, Right(_)))
 }
