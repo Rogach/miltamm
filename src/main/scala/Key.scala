@@ -1,11 +1,5 @@
 package org.rogach.miltamm
 
-object Keys {
-  def noParser[A] = (_:A) => sys.error("Non-implemented parser")
-  def static[A](a: A) = Key("", "", () => a, noParser)
-  
-}
-
 case class Key[A](
   nam: String, 
   q: String, 
@@ -34,6 +28,6 @@ case class Key[A](
   
   def calc(fn: => A) = copy(calc = () => fn)
 
-  def map[B](f: A => B): Key[B] = Key("", "", () => f(calc()), Keys.noParser)
-  def flatMap[B](f: A => Key[B]): Key[B] = Key("", "", () => f(calc()).apply, Keys.noParser)
+  def map[B](f: A => B): Key[B] = Key("", "", () => f(calc()), BuildImports.noParser)
+  def flatMap[B](f: A => Key[B]): Key[B] = Key("", "", () => f(calc()).apply, BuildImports.noParser)
 }
