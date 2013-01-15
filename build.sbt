@@ -55,3 +55,5 @@ site.includeScaladoc()
 ghpages.settings
 
 git.remoteRepo := "git@github.com:Rogach/miltamm.git"
+
+fork in Test := true

@@ -70,5 +70,16 @@ class UserInteractionTest extends MiltammTest with CapturingTest {
       out ==== "n?\nFailed to parse, sorry. The value must match the regex: \\d+\nn?\n"
     }
   }
+  
+  test ("asking for keys while resolving build template") {
+    withInput("42\n") {
+      val (out, err, _) = captureOutput {
+        val build = BuildCompiler.compile[BuildTemplate]("""val num = int("n?")""")
+        build.resolveKeys()
+      }
+      err ==== ""
+      out ==== "n?\n(integer value): "
+    }
+  }
 
 }

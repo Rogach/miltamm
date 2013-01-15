@@ -2,7 +2,7 @@ package org.rogach.miltamm
 
 trait BuildTemplate {
 
-  def transform: Seq[PartialFunction[String, Unit]]
+  def transform: Seq[PartialFunction[String, Unit]] = Nil
 
   private[miltamm] def resolveKeys() {
     val keys = this.getClass.getMethods
@@ -13,8 +13,8 @@ trait BuildTemplate {
         .filter(_.getParameterTypes.isEmpty)
     keys.map { m =>
       val key = m.invoke(this).asInstanceOf[Key[_]]
-      key.apply
       key._name = m.getName
+      key.apply
     }
   }
 
