@@ -25,6 +25,7 @@ libraryDependencies ++= Seq(
   "org.scala-lang" % "scala-compiler" % "2.10.0",
   "org.scala-lang" % "scala-reflect" % "2.10.0",
   "org.rogach" %% "scallop" % "0.7.0",
+  "commons-io" % "commons-io" % "2.1",
   "org.scalatest" %% "scalatest" % "1.9.1" % "test"
 )
 

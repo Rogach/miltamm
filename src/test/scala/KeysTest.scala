@@ -30,6 +30,7 @@ class KeysTest extends MiltammTest {
 
   test ("resolution of static keys in templates") {
     object B extends BuildTemplate {
+      def transform = Nil
       val a = static(1)
     }
     B.a.isDefined ==== false

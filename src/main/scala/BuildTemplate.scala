@@ -2,6 +2,8 @@ package org.rogach.miltamm
 
 trait BuildTemplate {
 
+  def transform: Seq[PartialFunction[String, Unit]]
+
   private[miltamm] def resolveKeys() {
     val keys = this.getClass.getMethods
         .filterNot(classOf[BuildTemplate].getMethods.toSet)
