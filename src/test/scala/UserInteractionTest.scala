@@ -6,7 +6,7 @@ import BuildImports._
 class UserInteractionTest extends MiltammTest with CapturingTest {
 
   test ("asking user for a value") {
-    Console.withIn(new ByteArrayInputStream("apple\n".getBytes)) {
+    withInput("apple\n") {
       val (out, err, answer) = captureOutput {
         ask("What fruit?", conv = x => Right(x))
       }
@@ -17,7 +17,7 @@ class UserInteractionTest extends MiltammTest with CapturingTest {
   }
   
   test ("asking user for a value second time, if at first it didn't parse") {
-    Console.withIn(new ByteArrayInputStream("da\nyes".getBytes)) {
+    withInput("da\nyes") {
       val (out, err, answer) = captureOutput {
         ask("fruit?", conv = boolConverter)
       }
@@ -28,7 +28,7 @@ class UserInteractionTest extends MiltammTest with CapturingTest {
   }
   
   test ("asking user for an integer value") {
-    Console.withIn(new ByteArrayInputStream("42".getBytes)) {
+    withInput("42") {
       val (out, err, answer) = captureOutput {
         int("n?")()
       }
@@ -39,7 +39,7 @@ class UserInteractionTest extends MiltammTest with CapturingTest {
   }
   
   test ("value selects") {
-    Console.withIn(new ByteArrayInputStream("2".getBytes)) {
+    withInput("2") {
       val (out, err, answer) = captureOutput {
         select("choose one:", ("a" -> "apple"), ("b" -> "banana"), ("p" -> "peach"))()
       }
@@ -50,7 +50,7 @@ class UserInteractionTest extends MiltammTest with CapturingTest {
   }
   
   test ("if user enters empty string, ask again") {
-    Console.withIn(new ByteArrayInputStream("\napple\n".getBytes)) {
+    withInput("\napple\n") {
       val (out, err, answer) = captureOutput {
         string("fruit?")()
       }
@@ -61,7 +61,7 @@ class UserInteractionTest extends MiltammTest with CapturingTest {
   }
   
   test ("regex matching") {
-    Console.withIn(new ByteArrayInputStream("apple\n12\n".getBytes)) {
+    withInput("apple\n12\n") {
       val (out, err, answer) = captureOutput {
         string("n?", "", "\\d+".r)()
       }

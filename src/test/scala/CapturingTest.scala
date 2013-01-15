@@ -49,13 +49,8 @@ trait CapturingTest {
   }
 
   /** Runs program with needed input. */
-  def withInput[A](input:String)(fn: => A):A = {
-    val normalIn = System.in
-    val streamIn = new ByteArrayInputStream(input.getBytes)
-    System.setIn(streamIn)
-    val res = fn
-    System.setIn(normalIn)
-    res
+  def withInput[A](input: String)(fn: => A): A = {
+    Console.withIn(new ByteArrayInputStream(input.getBytes))(fn)
   }
   
 }

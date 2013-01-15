@@ -1,28 +1,32 @@
 package org.rogach.miltamm
 
 object BuildCompiler {
-  def compile(file: String) = {
+  def compileFile[A](file: String): A = {
     Util.log.info("Compiling build file...")
     val startTime = System.currentTimeMillis
     try {
-      val c = new Compiler
-      val classes = c.compile(
-        """
-        |import org.rogach.miltamm.BuildImports._
-        |class Build extends org.rogach.miltamm.BuildTemplate {
-        |%s
-        |}
-        |""".stripMargin format io.Source.fromFile(file).getLines.mkString("\n")
-      )
-      val build = classes.head.newInstance.asInstanceOf[BuildTemplate]
-
+      val result = compile(io.Source.fromFile(file).getLines.mkString("\n"))
       val endTime = System.currentTimeMillis
       Util.log.success("Compiled build file, time elapsed: %d s" format (endTime - startTime)/1000)
+      result
     } catch { case e: Throwable =>
       println(e.getMessage)
       Util.log.error("Failed to compile build file '%s'" format file)
       sys.exit(1)
     }
+
+  }
+  def compile[A](source: String): A = {
+    val c = new Compiler
+    val classes = c.compile(
+      """
+      |import org.rogach.miltamm.BuildImports._
+      |class Build extends org.rogach.miltamm.BuildTemplate {
+      |%s
+      |}
+      |""".stripMargin format source
+    )
+    classes.head.newInstance.asInstanceOf[A]
   }
   
 }

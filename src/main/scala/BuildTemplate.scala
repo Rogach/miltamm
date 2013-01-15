@@ -11,7 +11,7 @@ trait BuildTemplate {
         .filterNot(_.getName.endsWith("$outer"))
         .filter(_.getReturnType == classOf[Key[_]])
         .filter(_.getParameterTypes.isEmpty)
-    keys.foreach { m =>
+    keys.map { m =>
       val key = m.invoke(this).asInstanceOf[Key[_]]
       key.apply
       key._name = m.getName
