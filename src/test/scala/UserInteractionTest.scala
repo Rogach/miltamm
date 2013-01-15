@@ -41,9 +41,9 @@ class UserInteractionTest extends MiltammTest with CapturingTest {
   test ("value selects") {
     Console.withIn(new ByteArrayInputStream("2".getBytes)) {
       val (out, err, answer) = captureOutput {
-        select("choose one:", "apple", "banana", "peach")()
+        select("choose one:", ("a" -> "apple"), ("b" -> "banana"), ("p" -> "peach"))()
       }
-      answer ==== "banana"
+      answer ==== "b"
       err ==== ""
       out ==== "choose one:\n 1 - apple\n 2 - banana\n 3 - peach\n(1-3): "
     }

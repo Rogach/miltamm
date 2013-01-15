@@ -47,12 +47,12 @@ trait Keys {
   
   def int(q: String, prompt: String = "(integer value): "): Key[Int] = Key(() => ask(q, prompt, x => Right(x.trim.toInt)))
   
-  def select(q: String, vals: String*): Key[String] = {
-    val header = q + "\n" + vals.zipWithIndex.map { case (s, i) => "%2d - %s" format (i+1, s) }.mkString("\n")
+  def select(q: String, vals: (String, String)*): Key[String] = {
+    val header = q + "\n" + vals.zipWithIndex.map { case (s, i) => "%2d - %s" format (i+1, s._2) }.mkString("\n")
     val parser = (v: String) => {
       val i = v.trim.toInt
       if (i > 0 && i <= vals.size) {
-        Right(vals(i-1))
+        Right(vals(i-1)._1)
       } else Left("Please input number in range %d--%d" format (1, vals.size))
     }
     Key(() => ask(header, "(1-%d): " format vals.size, parser))
