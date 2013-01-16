@@ -30,5 +30,11 @@ class RoutesTest extends MiltammTest {
     val route: RT = ign("tree") append Seq("apple")
     route("tree/apple") ==== Action("tree/apple", None, Some("tree/apple"))
   }
+  test ("replace key values in move operation") {
+    currentConf.withValue(Conf(keys = Seq(static("peach").name("fruit")))) {
+      val route: RT = "tree/apple" >> "tree/#{fruit}"
+      route("tree/apple") ==== Action("tree/apple", None, Some("tree/peach"))
+    }
+  }
   
 }

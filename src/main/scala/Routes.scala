@@ -12,7 +12,12 @@ trait Routes {
   implicit def pathToRoute(p: Path) = copy(p)
   implicit def stringToRoute(s: String) = copy(Path(s))
   implicit class ToMove(from: String) {
-    def >>(to: String) = move(Path(from), Path(to))
+    def >>(to: String) = {
+      move(
+        Path(from),
+        Path(currentConf.value.keys.foldLeft(to)((path, key) => path.replace("#{" + key.name + "}", key.apply.toString)))
+      )
+    }
     def >>(to: Path) = move(Path(from), to)
   }
 }
