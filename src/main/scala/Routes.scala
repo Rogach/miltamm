@@ -32,6 +32,7 @@ case class Route(from: Path, to: Option[Path], action: Option[(Conf, Seq[String]
   }
   def append(routes: Seq[PartialFunction[Path, Action]]) = copy(children = children ++ routes)
   def withAction(a: (Conf, Seq[String]) => Seq[String]) = copy(action = Some(a))
+  override def toString = "Route(%s, %s, %s, %s)" format (from, to, action, children)
 }
 
 object Path {

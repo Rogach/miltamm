@@ -21,7 +21,7 @@ trait CapturingTest {
   }
   
   /** Supresses exit in *fn* block. Returns list of exit statuses that were attempted. */
-  def trapExit(fn: => Unit):List[Int] = {
+  def trapExit(fn: => Unit): List[Int] = {
     @volatile var statuses = List[Int]()
     val normalSM = System.getSecurityManager
     object SM extends SecurityManager {
@@ -35,7 +35,7 @@ trait CapturingTest {
     try {
       fn
     } catch { 
-      case e:SecurityException => 
+      case e: SecurityException =>
     }
     System.setSecurityManager(normalSM)
     statuses.reverse

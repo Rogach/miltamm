@@ -2,7 +2,7 @@ package org.rogach.miltamm
 
 trait BuildTemplate {
 
-  def transform: Seq[PartialFunction[Seq[String], Action]] = Nil
+  def routes: Seq[PartialFunction[Seq[String], Action]] = Nil
 
   private[miltamm] def resolveKeys(): Seq[Key[_]] = {
     val keys = this.getClass.getMethods

@@ -1,13 +1,13 @@
 package org.rogach.miltamm
 
 object BuildCompiler {
-  def compileFile(file: String): BuildTemplate = {
-    Util.log.info("Compiling build file...")
+  def compileFile(file: String, opts: Options): BuildTemplate = {
+    if (!opts.silent()) Util.log.info("Compiling build file...")
     val startTime = System.currentTimeMillis
     try {
       val result = compile(io.Source.fromFile(file).getLines.mkString("\n"))
       val endTime = System.currentTimeMillis
-      Util.log.success("Compiled build file, time elapsed: %d s" format (endTime - startTime)/1000)
+      if (!opts.silent()) Util.log.success("Compiled build file, time elapsed: %d s" format (endTime - startTime)/1000)
       result
     } catch { case e: Throwable =>
       println(e.getMessage)
