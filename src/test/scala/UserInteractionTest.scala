@@ -74,7 +74,7 @@ class UserInteractionTest extends MiltammTest with CapturingTest {
   test ("asking for keys while resolving build template") {
     withInput("42\n") {
       val (out, err, _) = captureOutput {
-        val build = BuildCompiler.compile[BuildTemplate]("""val num = int("n?")""")
+        val build = BuildCompiler.compile("""val num = int("n?")""")
         build.resolveKeys()
       }
       err ==== ""

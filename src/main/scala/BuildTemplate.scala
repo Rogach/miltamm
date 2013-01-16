@@ -2,9 +2,9 @@ package org.rogach.miltamm
 
 trait BuildTemplate {
 
-  def transform: Seq[PartialFunction[String, Unit]] = Nil
+  def transform: Seq[PartialFunction[Seq[String], Action]] = Nil
 
-  private[miltamm] def resolveKeys() {
+  private[miltamm] def resolveKeys(): Seq[Key[_]] = {
     val keys = this.getClass.getMethods
         .filterNot(classOf[BuildTemplate].getMethods.toSet)
         .filterNot(_.getName.endsWith("$eq"))
@@ -15,6 +15,7 @@ trait BuildTemplate {
       val key = m.invoke(this).asInstanceOf[Key[_]]
       key._name = m.getName
       key.apply
+      key
     }
   }
 

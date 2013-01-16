@@ -1,22 +1,33 @@
 package org.rogach.miltamm
 
-import org.rogach.scallop._
+import java.io.File
+import org.apache.commons.io.FileUtils
+import org.apache.commons.io.filefilter.TrueFileFilter
+import collection.JavaConversions._
 
 object Main extends App {
-  val opts = new ScallopConf(args) {
-    version("Avalanche, %s b%s (%3$td.%3$tm.%3$tY %3$tH:%3$tM). Built with Scala %4$s" format (
-      BuildInfo.version, 
-      BuildInfo.buildinfoBuildnumber, 
-      new java.util.Date(BuildInfo.buildTime),
-      BuildInfo.scalaVersion))
-    banner("""Template preprocessor.
-             |Usage:
-             |  miltamm [OPTIONS]...  TEMPLATE_DIR  DESTINATION_DIR
-             |""".stripMargin)
+  run(args)
 
-    val buildFile = opt[String](descr = "location of template definition file. By default, miltamm uses miltamm-template.scala file right at the top of template directory")
-    val template = trailArg[String]("template", descr = "location of template directory")
-    val destination = trailArg[String]("destination", descr = "where to put the processed template files")
+  def run(args: Seq[String]) = {
+    val opts = new Options(args)
+    val build = BuildCompiler.compile(opts.buildFile.get.getOrElse(opts.template() + "/miltamm-template.scala"))
+    val conf = Conf(opts.template(), opts.destination(), build.resolveKeys())
+    val route = BuildImports.copy(Nil) append build.transform
+
+    val templateDir = Path(new File(conf.template).getAbsolutePath)
+    FileUtils.deleteDirectory(new File(conf.template))
+    FileUtils.iterateFiles(new File(conf.template), TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE).foreach { f =>
+      val relPath = Path(f.getAbsolutePath).drop(templateDir.size)
+      val action = route(relPath)
+      action.to.map(dest => new File(templateDir ++ dest ++ relPath.drop(action.from.size) mkString "/")).foreach { dest =>
+        action.transform.fold { 
+          // short-circuit, since we don't need to transform contents of the file
+          FileUtils.copyFile(f, dest)
+        } { trans =>
+          FileUtils.writeLines(dest, trans(conf, FileUtils.readLines(f)))
+        }
+      }
+    }
   }
-  
+
 }

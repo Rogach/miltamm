@@ -17,7 +17,7 @@ trait Routes {
   }
 }
 
-case class Route(from: Path, to: Option[Path], action: Option[Seq[String] => Seq[String]], children: List[PartialFunction[Path, Action]]) extends PartialFunction[Path, Action] {
+case class Route(from: Path, to: Option[Path], action: Option[(Conf, Seq[String]) => Seq[String]], children: List[PartialFunction[Path, Action]]) extends PartialFunction[Path, Action] {
   def isDefinedAt(f: Path) = f.startsWith(from)
   def apply(f: Path) = { 
     val ff = f.drop(from.size)
@@ -26,7 +26,7 @@ case class Route(from: Path, to: Option[Path], action: Option[Seq[String] => Seq
       .getOrElse(Action(from, action, to))
   }
   def append(routes: Seq[PartialFunction[Path, Action]]) = copy(children = children ++ routes)
-  def withAction(a: Seq[String] => Seq[String]) = copy(action = Some(a))
+  def withAction(a: (Conf, Seq[String]) => Seq[String]) = copy(action = Some(a))
 }
 
 object Path {

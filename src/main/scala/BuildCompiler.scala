@@ -1,7 +1,7 @@
 package org.rogach.miltamm
 
 object BuildCompiler {
-  def compileFile[A](file: String): A = {
+  def compileFile(file: String): BuildTemplate = {
     Util.log.info("Compiling build file...")
     val startTime = System.currentTimeMillis
     try {
@@ -16,7 +16,7 @@ object BuildCompiler {
     }
 
   }
-  def compile[A](source: String): A = {
+  def compile(source: String): BuildTemplate = {
     val c = new Compiler
     val classes = c.compile(
       """
@@ -26,7 +26,7 @@ object BuildCompiler {
       |}
       |""".stripMargin format source
     )
-    classes.head.newInstance.asInstanceOf[A]
+    classes.head.newInstance.asInstanceOf[BuildTemplate]
   }
   
 }
