@@ -8,3 +8,4 @@ The idea is simple:
   some questions (effectively setting values for the build definition keys),
   and then miltamm generates the processed copy of template in `new_awesome_project` folder.
 
+This preprocessor was only tested on Linux (thus would probably work on it). I haven't tested it on anything else.
