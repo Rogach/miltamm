@@ -4,7 +4,7 @@ import org.apache.commons.io.FileUtils
 
 object build extends Build {
 
-  val testCopy = TaskKey[Unit]("test-copy") <<= (test, sourceDirectory, target) map { (_, source, target) =>
+  val testCopy = TaskKey[Unit]("test-copy") <<= (sourceDirectory, target) map { (source, target) =>
     (target / "template-output").listFiles.foreach { f =>
       if (f.isDirectory) {
         FileUtils.deleteDirectory(source / "templates-test" / (f.getName + ".result"))
