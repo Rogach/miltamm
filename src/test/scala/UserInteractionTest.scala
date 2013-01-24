@@ -81,5 +81,32 @@ class UserInteractionTest extends MiltammTest with CapturingTest {
       out ==== "n?\n(integer value): "
     }
   }
+  
+  test ("caching the key value, not asking two times") {
+    withInput("n\n") {
+      val (out, err, res) = captureOutput {
+        val a = bool("a?")
+        a()
+        a()
+      }
+      err ==== ""
+      out ==== "a?\n[y/n]: "
+      res ==== false
+    }
+  }
+
+  test ("don't ask the unneeded key") {
+    val a = bool("a?")
+    val b = bool("b?").when(a, or = false)
+    withInput("n\nn\nn\n") {
+      val (out, err, res) = captureOutput {
+        a()
+        b()
+      }
+      err ==== ""
+      out ==== "a?\n[y/n]: "
+      res ==== false
+    }
+  }
 
 }

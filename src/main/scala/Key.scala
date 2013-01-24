@@ -25,6 +25,9 @@ case class Key[A](
   
   def calc(fn: => A) = copy(calc = () => fn)
 
-  def map[B](f: A => B): Key[B] = Key(() => f(calc()))
-  def flatMap[B](f: A => Key[B]): Key[B] = Key(() => f(calc()).apply)
+  def map[B](f: A => B): Key[B] = Key(() => f(apply()))
+  def flatMap[B](f: A => Key[B]): Key[B] = Key(() => f(apply()).apply)
+  
+  // some helpers
+  def when(bool: Key[Boolean], or: => A): Key[A] = bool.map { v => if (v) apply() else or }
 }
