@@ -1,17 +1,16 @@
 import sbt._
 import Keys._
-import org.apache.commons.io.FileUtils
 
 object build extends Build {
 
   val testCopy = TaskKey[Unit]("test-copy") <<= (sourceDirectory, target) map { (source, target) =>
     (target / "template-output").listFiles.foreach { f =>
       if (f.isDirectory) {
-        FileUtils.deleteDirectory(source / "templates-test" / (f.getName + ".result"))
-        FileUtils.copyDirectory(f, source / "templates-test" / (f.getName + ".result"))
+        IO.delete(source / "templates-test" / (f.getName + ".result"))
+        IO.copyDirectory(f, source / "templates-test" / (f.getName + ".result"))
       } else 
         if (f.isFile && f.getName.endsWith(".output") && f.length > 0) 
-          FileUtils.copyFile(f, source / "templates-test" / f.getName)
+          IO.copyFile(f, source / "templates-test" / f.getName)
     }
   }
 
