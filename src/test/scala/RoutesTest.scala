@@ -36,5 +36,15 @@ class RoutesTest extends MiltammTest {
       route("tree/apple") ==== Action("tree/apple", None, Some("tree/peach"))
     }
   }
+  test ("optional ignore - true") {
+    val k = static(true)
+    val route: RT = iif(k) { "tree/apple" >> "tree/banana" }
+    route("tree/apple") ==== Action("tree/apple", None, Some("tree/banana"))
+  }
+  test ("optional ignore - false") {
+    val k = static(false)
+    val route: RT = iif(k) { "tree/apple" >> "tree/banana" }
+    route("tree/apple") ==== Action("tree/apple", None, None)
+  }
   
 }

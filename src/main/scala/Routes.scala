@@ -7,6 +7,12 @@ trait Routes {
   def ignore(p: Path) = new Route(p, None, None, Nil)
   def move(from: Path, to: Path) = new Route(from, Some(to), None, Nil)
   def copy(p: Path) = new Route(p, Some(p), None, Nil)
+  def iif(b: Key[Boolean])(route: PartialFunction[Path, Action]): PartialFunction[Path, Action] = {
+    if (b()) route else new PartialFunction[Path, Action] {
+      def isDefinedAt(f: Path) = route.isDefinedAt(f)
+      def apply(f: Path) = new Action(f, None, None)
+    }
+  }
   
   implicit def toPath(s: String) = Path(s)
   implicit def pathToRoute(p: Path) = copy(p)
