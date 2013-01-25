@@ -1,6 +1,11 @@
 package org.rogach.miltamm
 
+/** Compiles build files for miltamm.
+  */
 object BuildCompiler {
+  /** Compiles a given file.
+    * @param file The name of file to compile
+    */
   def compileFile(file: String, opts: Options): BuildTemplate = {
     if (!opts.silent()) Util.log.info("Compiling build file...")
     val startTime = System.currentTimeMillis
@@ -16,6 +21,10 @@ object BuildCompiler {
     }
 
   }
+  
+  /** Compile string as a build file.
+    * @param source A string, containing build definition.
+    */
   def compile(source: String): BuildTemplate = {
     val c = new Compiler
     val classes = c.compile(
@@ -31,16 +40,6 @@ object BuildCompiler {
   
 }
 
-// from habrahabr.ru
-
-/*!# Compiler
-  
-   This class is a wrapper over Scala Compiler API
-   which has simple interface just accepting the source code string.
-  
-   Compiles the source code assuming that it is a .scala source file content.
-   It used a classpath of the environment that called the `Compiler` class.
-  */
   
 import tools.nsc.{Global, Settings}
 import tools.nsc.io._
@@ -49,6 +48,13 @@ import tools.nsc.interpreter.AbstractFileClassLoader
 import scala.reflect.internal.util.BatchSourceFile
 import tools.nsc.util._
   
+/**
+  * This class is a wrapper over Scala Compiler API
+  * which has simple interface just accepting the source code string.
+  *  
+  * Compiles the source code assuming that it is a .scala source file content.
+  * It used a classpath of the environment that called the `Compiler` class.
+  */
 class Compiler {
   
    def compile(source: String): Iterable[Class[_]] = {
@@ -96,14 +102,17 @@ class Compiler {
    }
 }
   
-/*!### Compilation exception
-  
-   Compilation exception is defined this way.
-   It contains program was compiling and error positions with messages
-   of what went wrong during compilation.
+/** Compilation exception.
+  * It contains error positions with messages of what went wrong during compilation.
   */
 class CompilationFailedException(val programme: String,
                                   val messages: Iterable[CompileError])
    extends Exception("\n" + messages.map(m => "line %d: %s \n    %s\n    %s" format (m.line - 3, m.message, m.lineContent, " " * (m.column - 1) + "^")).mkString("\n"))
 
+/** Single compile error.
+  * @param line Line number, at which error took place.
+  * @param column offset from line start.
+  * @param lineContent Contents of source line.
+  * @param message Error message.
+  */
 case class CompileError(line: Int, column: Int, lineContent: String, message: String)

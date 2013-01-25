@@ -1,6 +1,7 @@
 package org.rogach.miltamm
 
 object Util {
+  /** Pretty logging. */
   object log {
     val INFO = "info"
     val ERROR = "error"

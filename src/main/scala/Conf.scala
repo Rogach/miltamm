@@ -6,6 +6,11 @@ package org.rogach.miltamm
   */
 object currentConf extends util.DynamicVariable[Conf](Conf())
 
+/** Holder for application configuration.
+  * @param template The location of source template
+  * @param destination The target directory for the build (where to put the resulting files).
+  * @param keys All the keys that where defined during build resolution.
+  */
 case class Conf(
   template: String = "",
   destination: String = "",

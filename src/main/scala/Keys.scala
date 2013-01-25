@@ -2,10 +2,19 @@ package org.rogach.miltamm
 
 import util.matching.Regex
 
+/** Helpers to create and manipulate Key values. */
 trait Keys {
 
-  def static[A](a: A) = Key(() => a)
+  /** Create a key with a pre-defined value.
+    * @param value Predefined value
+    */
+  def static[A](value: A) = Key(() => value)
 
+  /** Ask user a question.
+    * @param q Question text
+    * @param prompt Prompt to be displayed before the answer input.
+    * @param conv Converter for inputted value. In case of `Left`, string is displayed to the user and he is asked to repeat the input.
+    */
   def ask[A](q: String, prompt: String = "", conv: String => Either[String, A]): A = {
     while (true) {
       Console.println(q)
@@ -27,12 +36,17 @@ trait Keys {
     sys.error("Won't happen")
   }
   
+  /** Converts Y/N string into boolean value. */
   val boolConverter = (_: String).head.toLower match {
     case 'y' => Right(true)
     case 'n' => Right(false)
     case _ => Left("Failed to parse boolean value")
   }
 
+  /** Create a "checked" converter. Before feeding the string into converter, it is matched against a given regex. In case of error, the message is generated, containing the regex as explanation..
+    * @param rgx regex to check with
+    * @param conv converter to wrap
+    */
   def check[A](rgx: Regex, conv: String => Either[String, A]): String => Either[String, A] = { x =>
     x.trim match {
       case rgx() => conv(x)
@@ -41,12 +55,25 @@ trait Keys {
     }
   }
 
+  /** Create a boolean key, that would ask the user for a value when computed.
+    * @param q question string
+    */
   def bool(q: String, prompt: String = "[y/n]: "): Key[Boolean] = Key(() => ask(q, prompt, boolConverter))
   
+  /** Create a string key, that would ask the user for a value when computed.
+    * @param q question string
+    */
   def string(q: String, prompt: String = "> ", rgx: Regex = ".*".r): Key[String] = Key(() => ask(q, prompt, check(rgx, Right(_))))
   
+  /** Create an integer key, that would ask the user for a number when computed.
+    * @param q question string
+    */
   def int(q: String, prompt: String = "(integer value): "): Key[Int] = Key(() => ask(q, prompt, x => Right(x.trim.toInt)))
   
+  /** Create an string key, that would ask the user to choose from a number of options when computing.
+    * @param q question string
+    * @param vals List of tuples - (key, description). Description is shown to the user, key is returned for internal use.
+    */
   def select(q: String, vals: (String, String)*): Key[String] = {
     val header = q + "\n" + vals.zipWithIndex.map { case (s, i) => "%2d - %s" format (i+1, s._2) }.mkString("\n")
     val parser = (v: String) => {
