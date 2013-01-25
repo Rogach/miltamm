@@ -40,7 +40,7 @@
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">BuildImports</span><span class="result"> extends <a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a></span>
+        <span class="name">BuildImports</span><span class="result"> extends <a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a> with <a href="Routes.html" class="extype" name="org.rogach.miltamm.Routes">Routes</a></span>
       </span>
       </h4>
       
@@ -48,7 +48,7 @@
 in .scala build definition.
 </p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a>, <a href="../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="Routes.html" class="extype" name="org.rogach.miltamm.Routes">Routes</a>, <a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a>, <a href="../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -66,7 +66,7 @@ in .scala build definition.
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.rogach.miltamm.BuildImports"><span>BuildImports</span></li><li class="in" name="org.rogach.miltamm.Keys"><span>Keys</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.rogach.miltamm.BuildImports"><span>BuildImports</span></li><li class="in" name="org.rogach.miltamm.Routes"><span>Routes</span></li><li class="in" name="org.rogach.miltamm.Keys"><span>Keys</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -86,7 +86,23 @@ in .scala build definition.
         <div id="allMembers">
         
 
-        
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.rogach.miltamm.Routes.ToMove" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ToMoveextendsObject"></a>
+      <a id="ToMove:ToMove"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Routes$ToMove.html"><span class="name">ToMove</span></a><span class="result"> extends <a href="../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Enables the ability to specify move routes like <code>&quot;from&quot; &gt;&gt; &quot;to&quot;</code>.</p>
+    </li></ol>
+            </div>
 
         
 
@@ -182,7 +198,8 @@ in .scala build definition.
         <span class="name">ask</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="q">q: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="prompt">prompt: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="conv">conv: (<span class="extype" name="scala.Predef.String">String</span>) ⇒ <a href="../../../scala/package.html#Either[+A,+B]=scala.util.Either[A,B]" class="extmbr" name="scala.Either">Either</a>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.rogach.miltamm.Keys.ask.A">A</span>]</span>)</span><span class="result">: <span class="extype" name="org.rogach.miltamm.Keys.ask.A">A</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a></dd></dl></div>
+      <p class="shortcomment cmt">Ask user a question.</p><div class="fullcomment"><div class="comment cmt"><p>Ask user a question.</p></div><dl class="paramcmts block"><dt class="param">q</dt><dd class="cmt"><p>Question text</p></dd><dt class="param">prompt</dt><dd class="cmt"><p>Prompt to be displayed before the answer input.</p></dd><dt class="param">conv</dt><dd class="cmt"><p>Converter for inputted value. In case of <code>Left</code>, string is displayed to the user and he is asked to repeat the input.
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a></dd></dl></div>
     </li><li name="org.rogach.miltamm.Keys#bool" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="bool(q:String,prompt:String):org.rogach.miltamm.Key[Boolean]"></a>
       <a id="bool(String,String):Key[Boolean]"></a>
@@ -195,7 +212,8 @@ in .scala build definition.
         <span class="name">bool</span><span class="params">(<span name="q">q: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="prompt">prompt: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;[y/n]: &quot;</span></span>)</span><span class="result">: <a href="Key.html" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="scala.Boolean">Boolean</span>]</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a></dd></dl></div>
+      <p class="shortcomment cmt">Create a boolean key, that would ask the user for a value when computed.</p><div class="fullcomment"><div class="comment cmt"><p>Create a boolean key, that would ask the user for a value when computed.</p></div><dl class="paramcmts block"><dt class="param">q</dt><dd class="cmt"><p>question string
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a></dd></dl></div>
     </li><li name="org.rogach.miltamm.Keys#boolConverter" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="boolConverter:String=&gt;ProductwithSerializablewithscala.util.Either[String,Boolean]"></a>
       <a id="boolConverter:(String)⇒ProductwithSerializablewithEither[String,Boolean]"></a>
@@ -208,7 +226,7 @@ in .scala build definition.
         <span class="name">boolConverter</span><span class="result">: (<span class="extype" name="scala.Predef.String">String</span>) ⇒ <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span> with <span class="extype" name="scala.util.Either">Either</span>[<span class="extype" name="java.lang.String">String</span>, <span class="extype" name="scala.Boolean">Boolean</span>]</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a></dd></dl></div>
+      <p class="shortcomment cmt">Converts Y/N string into boolean value.</p><div class="fullcomment"><div class="comment cmt"><p>Converts Y/N string into boolean value.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a></dd></dl></div>
     </li><li name="org.rogach.miltamm.Keys#check" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="check[A](rgx:scala.util.matching.Regex,conv:String=&gt;Either[String,A]):String=&gt;Either[String,A]"></a>
       <a id="check[A](Regex,(String)⇒Either[String,A]):(String)⇒Either[String,A]"></a>
@@ -221,7 +239,8 @@ in .scala build definition.
         <span class="name">check</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="rgx">rgx: <span class="extype" name="scala.util.matching.Regex">Regex</span></span>, <span name="conv">conv: (<span class="extype" name="scala.Predef.String">String</span>) ⇒ <a href="../../../scala/package.html#Either[+A,+B]=scala.util.Either[A,B]" class="extmbr" name="scala.Either">Either</a>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.rogach.miltamm.Keys.check.A">A</span>]</span>)</span><span class="result">: (<span class="extype" name="scala.Predef.String">String</span>) ⇒ <a href="../../../scala/package.html#Either[+A,+B]=scala.util.Either[A,B]" class="extmbr" name="scala.Either">Either</a>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.rogach.miltamm.Keys.check.A">A</span>]</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a></dd></dl></div>
+      <p class="shortcomment cmt">Create a &quot;checked&quot; converter.</p><div class="fullcomment"><div class="comment cmt"><p>Create a &quot;checked&quot; converter. Before feeding the string into converter, it is matched against a given regex. In case of error, the message is generated, containing the regex as explanation..</p></div><dl class="paramcmts block"><dt class="param">rgx</dt><dd class="cmt"><p>regex to check with</p></dd><dt class="param">conv</dt><dd class="cmt"><p>converter to wrap
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a></dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -238,6 +257,19 @@ in .scala build definition.
                 <span class="name">@throws</span><span class="args">()</span>
               
         </dd></dl></div>
+    </li><li name="org.rogach.miltamm.Routes#copy" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="copy(p:org.rogach.miltamm.Path):org.rogach.miltamm.Route"></a>
+      <a id="copy(Path):Route"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">copy</span><span class="params">(<span name="p">p: <a href="package.html#Path=Seq[String]" class="extmbr" name="org.rogach.miltamm.Path">Path</a></span>)</span><span class="result">: <a href="Route.html" class="extype" name="org.rogach.miltamm.Route">Route</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Creates a route, that copies the file as-is from template to destination.</p><div class="fullcomment"><div class="comment cmt"><p>Creates a route, that copies the file as-is from template to destination.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Routes.html" class="extype" name="org.rogach.miltamm.Routes">Routes</a></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -306,6 +338,34 @@ in .scala build definition.
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.rogach.miltamm.Routes#ignore" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ignore(p:org.rogach.miltamm.Path):org.rogach.miltamm.Route"></a>
+      <a id="ignore(Path):Route"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ignore</span><span class="params">(<span name="p">p: <a href="package.html#Path=Seq[String]" class="extmbr" name="org.rogach.miltamm.Path">Path</a></span>)</span><span class="result">: <a href="Route.html" class="extype" name="org.rogach.miltamm.Route">Route</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Creates a route, that ignores the files, starting with some path.</p><div class="fullcomment"><div class="comment cmt"><p>Creates a route, that ignores the files, starting with some path.</p></div><dl class="paramcmts block"><dt class="param">p</dt><dd class="cmt"><p>Route only matches files which names start with <code>p</code>, and returns <code>Ignore</code> action.
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Routes.html" class="extype" name="org.rogach.miltamm.Routes">Routes</a></dd></dl></div>
+    </li><li name="org.rogach.miltamm.Routes#iif" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="iif(b:org.rogach.miltamm.Key[Boolean])(route:PartialFunction[org.rogach.miltamm.Path,org.rogach.miltamm.Action]):PartialFunction[org.rogach.miltamm.Path,org.rogach.miltamm.Action]"></a>
+      <a id="iif(Key[Boolean])(PartialFunction[Path,Action]):PartialFunction[Path,Action]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">iif</span><span class="params">(<span name="b">b: <a href="Key.html" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="scala.Boolean">Boolean</span>]</span>)</span><span class="params">(<span name="route">route: <span class="extype" name="scala.PartialFunction">PartialFunction</span>[<a href="package.html#Path=Seq[String]" class="extmbr" name="org.rogach.miltamm.Path">Path</a>, <a href="Action.html" class="extype" name="org.rogach.miltamm.Action">Action</a>]</span>)</span><span class="result">: <span class="extype" name="scala.PartialFunction">PartialFunction</span>[<a href="package.html#Path=Seq[String]" class="extmbr" name="org.rogach.miltamm.Path">Path</a>, <a href="Action.html" class="extype" name="org.rogach.miltamm.Action">Action</a>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Creates a route, that executes the child function (route) only if the provided key is true.</p><div class="fullcomment"><div class="comment cmt"><p>Creates a route, that executes the child function (route) only if the provided key is true.</p></div><dl class="paramcmts block"><dt class="param">b</dt><dd class="cmt"><p>key to check</p></dd><dt class="param">route</dt><dd class="cmt"><p>Route to delegate to, if key is true.
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Routes.html" class="extype" name="org.rogach.miltamm.Routes">Routes</a></dd></dl></div>
     </li><li name="org.rogach.miltamm.Keys#int" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="int(q:String,prompt:String):org.rogach.miltamm.Key[Int]"></a>
       <a id="int(String,String):Key[Int]"></a>
@@ -318,7 +378,8 @@ in .scala build definition.
         <span class="name">int</span><span class="params">(<span name="q">q: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="prompt">prompt: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;(integer value): &quot;</span></span>)</span><span class="result">: <a href="Key.html" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="scala.Int">Int</span>]</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a></dd></dl></div>
+      <p class="shortcomment cmt">Create an integer key, that would ask the user for a number when computed.</p><div class="fullcomment"><div class="comment cmt"><p>Create an integer key, that would ask the user for a number when computed.</p></div><dl class="paramcmts block"><dt class="param">q</dt><dd class="cmt"><p>question string
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a></dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -332,6 +393,19 @@ in .scala build definition.
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.rogach.miltamm.Routes#move" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="move(from:org.rogach.miltamm.Path,to:org.rogach.miltamm.Path):org.rogach.miltamm.Route"></a>
+      <a id="move(Path,Path):Route"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">move</span><span class="params">(<span name="from">from: <a href="package.html#Path=Seq[String]" class="extmbr" name="org.rogach.miltamm.Path">Path</a></span>, <span name="to">to: <a href="package.html#Path=Seq[String]" class="extmbr" name="org.rogach.miltamm.Path">Path</a></span>)</span><span class="result">: <a href="Route.html" class="extype" name="org.rogach.miltamm.Route">Route</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Creates a route, that moves a file from one relative location to another.</p><div class="fullcomment"><div class="comment cmt"><p>Creates a route, that moves a file from one relative location to another.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Routes.html" class="extype" name="org.rogach.miltamm.Routes">Routes</a></dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -371,21 +445,35 @@ in .scala build definition.
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.rogach.miltamm.Routes#pathToRoute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="pathToRoute(p:org.rogach.miltamm.Path):org.rogach.miltamm.Route"></a>
+      <a id="pathToRoute(Path):Route"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">pathToRoute</span><span class="params">(<span name="p">p: <a href="package.html#Path=Seq[String]" class="extmbr" name="org.rogach.miltamm.Path">Path</a></span>)</span><span class="result">: <a href="Route.html" class="extype" name="org.rogach.miltamm.Route">Route</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Implicit converter from path to copy route.</p><div class="fullcomment"><div class="comment cmt"><p>Implicit converter from path to copy route.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Routes.html" class="extype" name="org.rogach.miltamm.Routes">Routes</a></dd></dl></div>
     </li><li name="org.rogach.miltamm.Keys#select" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="select(q:String,vals:String*):org.rogach.miltamm.Key[String]"></a>
-      <a id="select(String,String*):Key[String]"></a>
+      <a id="select(q:String,vals:(String,String)*):org.rogach.miltamm.Key[String]"></a>
+      <a id="select(String,(String,String)*):Key[String]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">select</span><span class="params">(<span name="q">q: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="vals">vals: <span class="extype" name="scala.Predef.String">String</span>*</span>)</span><span class="result">: <a href="Key.html" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+        <span class="name">select</span><span class="params">(<span name="q">q: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="vals">vals: (<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>)*</span>)</span><span class="result">: <a href="Key.html" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a></dd></dl></div>
+      <p class="shortcomment cmt">Create an string key, that would ask the user to choose from a number of options when computing.</p><div class="fullcomment"><div class="comment cmt"><p>Create an string key, that would ask the user to choose from a number of options when computing.</p></div><dl class="paramcmts block"><dt class="param">q</dt><dd class="cmt"><p>question string</p></dd><dt class="param">vals</dt><dd class="cmt"><p>List of tuples - (key, description). Description is shown to the user, key is returned for internal use.
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a></dd></dl></div>
     </li><li name="org.rogach.miltamm.Keys#static" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="static[A](a:A):org.rogach.miltamm.Key[A]"></a>
+      <a id="static[A](value:A):org.rogach.miltamm.Key[A]"></a>
       <a id="static[A](A):Key[A]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -393,10 +481,11 @@ in .scala build definition.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">static</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="a">a: <span class="extype" name="org.rogach.miltamm.Keys.static.A">A</span></span>)</span><span class="result">: <a href="Key.html" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="org.rogach.miltamm.Keys.static.A">A</span>]</span>
+        <span class="name">static</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="value">value: <span class="extype" name="org.rogach.miltamm.Keys.static.A">A</span></span>)</span><span class="result">: <a href="Key.html" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="org.rogach.miltamm.Keys.static.A">A</span>]</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a></dd></dl></div>
+      <p class="shortcomment cmt">Create a key with a pre-defined value.</p><div class="fullcomment"><div class="comment cmt"><p>Create a key with a pre-defined value.</p></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>Predefined value
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a></dd></dl></div>
     </li><li name="org.rogach.miltamm.Keys#string" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="string(q:String,prompt:String,rgx:scala.util.matching.Regex):org.rogach.miltamm.Key[String]"></a>
       <a id="string(String,String,Regex):Key[String]"></a>
@@ -409,7 +498,21 @@ in .scala build definition.
         <span class="name">string</span><span class="params">(<span name="q">q: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="prompt">prompt: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&gt; &quot;</span></span>, <span name="rgx">rgx: <span class="extype" name="scala.util.matching.Regex">Regex</span> = <span class="symbol">&quot;.*&quot;.r</span></span>)</span><span class="result">: <a href="Key.html" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a></dd></dl></div>
+      <p class="shortcomment cmt">Create a string key, that would ask the user for a value when computed.</p><div class="fullcomment"><div class="comment cmt"><p>Create a string key, that would ask the user for a value when computed.</p></div><dl class="paramcmts block"><dt class="param">q</dt><dd class="cmt"><p>question string
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a></dd></dl></div>
+    </li><li name="org.rogach.miltamm.Routes#stringToRoute" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="stringToRoute(s:String):org.rogach.miltamm.Route"></a>
+      <a id="stringToRoute(String):Route"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">stringToRoute</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="Route.html" class="extype" name="org.rogach.miltamm.Route">Route</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Implicit converter from string to copy route.</p><div class="fullcomment"><div class="comment cmt"><p>Implicit converter from string to copy route.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Routes.html" class="extype" name="org.rogach.miltamm.Routes">Routes</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -423,6 +526,19 @@ in .scala build definition.
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.rogach.miltamm.Routes#toPath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toPath(s:String):org.rogach.miltamm.Path"></a>
+      <a id="toPath(String):Path"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toPath</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="package.html#Path=Seq[String]" class="extmbr" name="org.rogach.miltamm.Path">Path</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Implicit converter from string to path.</p><div class="fullcomment"><div class="comment cmt"><p>Implicit converter from string to path.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Routes.html" class="extype" name="org.rogach.miltamm.Routes">Routes</a></dd></dl></div>
     </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>
@@ -493,7 +609,9 @@ in .scala build definition.
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="org.rogach.miltamm.Keys">
+        <div class="parent" name="org.rogach.miltamm.Routes">
+              <h3>Inherited from <a href="Routes.html" class="extype" name="org.rogach.miltamm.Routes">Routes</a></h3>
+            </div><div class="parent" name="org.rogach.miltamm.Keys">
               <h3>Inherited from <a href="Keys.html" class="extype" name="org.rogach.miltamm.Keys">Keys</a></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <a href="../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>

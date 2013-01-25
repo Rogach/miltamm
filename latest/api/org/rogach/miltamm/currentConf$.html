@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>Keys - org.rogach.miltamm.Keys</title>
-          <meta name="description" content="Keys - org.rogach.miltamm.Keys" />
-          <meta name="keywords" content="Keys org.rogach.miltamm.Keys" />
+          <title>currentConf - org.rogach.miltamm.currentConf</title>
+          <meta name="description" content="currentConf - org.rogach.miltamm.currentConf" />
+          <meta name="keywords" content="currentConf org.rogach.miltamm.currentConf" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -17,7 +17,7 @@
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../index.html';
-            var hash = 'org.rogach.miltamm.Keys';
+            var hash = 'org.rogach.miltamm.currentConf$';
             var anchor = window.location.hash;
             var anchor_opt = '';
             if (anchor.length >= 1)
@@ -27,29 +27,29 @@
    	  </script>
     
         </head>
-        <body class="type">
+        <body class="value">
       <div id="definition">
-        <img src="../../../lib/trait_big.png" />
+        <img src="../../../lib/object_big.png" />
         <p id="owner"><a href="../../package.html" class="extype" name="org">org</a>.<a href="../package.html" class="extype" name="org.rogach">rogach</a>.<a href="package.html" class="extype" name="org.rogach.miltamm">miltamm</a></p>
-        <h1>Keys</h1>
+        <h1>currentConf</h1>
       </div>
 
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">trait</span>
+        <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">Keys</span><span class="result"> extends <a href="../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
+        <span class="name">currentConf</span><span class="result"> extends <span class="extype" name="scala.util.DynamicVariable">DynamicVariable</span>[<a href="Conf.html" class="extype" name="org.rogach.miltamm.Conf">Conf</a>]</span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Helpers to create and manipulate Key values.</p></div><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Sort of a global variable for currently used Conf.
+It's probably not the best choice, but as for now I can't see a way
+to easily thread Conf through all the code.
+</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
-        </div><div class="toggleContainer block">
-          <span class="toggle">Known Subclasses</span>
-          <div class="subClasses hiddenContent"><a href="BuildImports$.html" class="extype" name="org.rogach.miltamm.BuildImports">BuildImports</a></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.util.DynamicVariable">DynamicVariable</span>[<a href="Conf.html" class="extype" name="org.rogach.miltamm.Conf">Conf</a>], <a href="../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -67,7 +67,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.rogach.miltamm.Keys"><span>Keys</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.rogach.miltamm.currentConf"><span>currentConf</span></li><li class="in" name="scala.util.DynamicVariable"><span>DynamicVariable</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -171,61 +171,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="org.rogach.miltamm.Keys#ask" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ask[A](q:String,prompt:String,conv:String=&gt;Either[String,A]):A"></a>
-      <a id="ask[A](String,String,(String)⇒Either[String,A]):A"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">ask</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="q">q: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="prompt">prompt: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="conv">conv: (<span class="extype" name="scala.Predef.String">String</span>) ⇒ <a href="../../../scala/package.html#Either[+A,+B]=scala.util.Either[A,B]" class="extmbr" name="scala.Either">Either</a>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.rogach.miltamm.Keys.ask.A">A</span>]</span>)</span><span class="result">: <span class="extype" name="org.rogach.miltamm.Keys.ask.A">A</span></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Ask user a question.</p><div class="fullcomment"><div class="comment cmt"><p>Ask user a question.</p></div><dl class="paramcmts block"><dt class="param">q</dt><dd class="cmt"><p>Question text</p></dd><dt class="param">prompt</dt><dd class="cmt"><p>Prompt to be displayed before the answer input.</p></dd><dt class="param">conv</dt><dd class="cmt"><p>Converter for inputted value. In case of <code>Left</code>, string is displayed to the user and he is asked to repeat the input.
-</p></dd></dl></div>
-    </li><li name="org.rogach.miltamm.Keys#bool" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="bool(q:String,prompt:String):org.rogach.miltamm.Key[Boolean]"></a>
-      <a id="bool(String,String):Key[Boolean]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">bool</span><span class="params">(<span name="q">q: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="prompt">prompt: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;[y/n]: &quot;</span></span>)</span><span class="result">: <a href="Key.html" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="scala.Boolean">Boolean</span>]</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Create a boolean key, that would ask the user for a value when computed.</p><div class="fullcomment"><div class="comment cmt"><p>Create a boolean key, that would ask the user for a value when computed.</p></div><dl class="paramcmts block"><dt class="param">q</dt><dd class="cmt"><p>question string
-</p></dd></dl></div>
-    </li><li name="org.rogach.miltamm.Keys#boolConverter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="boolConverter:String=&gt;ProductwithSerializablewithscala.util.Either[String,Boolean]"></a>
-      <a id="boolConverter:(String)⇒ProductwithSerializablewithEither[String,Boolean]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">boolConverter</span><span class="result">: (<span class="extype" name="scala.Predef.String">String</span>) ⇒ <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span> with <span class="extype" name="scala.util.Either">Either</span>[<span class="extype" name="java.lang.String">String</span>, <span class="extype" name="scala.Boolean">Boolean</span>]</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Converts Y/N string into boolean value.</p>
-    </li><li name="org.rogach.miltamm.Keys#check" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="check[A](rgx:scala.util.matching.Regex,conv:String=&gt;Either[String,A]):String=&gt;Either[String,A]"></a>
-      <a id="check[A](Regex,(String)⇒Either[String,A]):(String)⇒Either[String,A]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">check</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="rgx">rgx: <span class="extype" name="scala.util.matching.Regex">Regex</span></span>, <span name="conv">conv: (<span class="extype" name="scala.Predef.String">String</span>) ⇒ <a href="../../../scala/package.html#Either[+A,+B]=scala.util.Either[A,B]" class="extmbr" name="scala.Either">Either</a>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.rogach.miltamm.Keys.check.A">A</span>]</span>)</span><span class="result">: (<span class="extype" name="scala.Predef.String">String</span>) ⇒ <a href="../../../scala/package.html#Either[+A,+B]=scala.util.Either[A,B]" class="extmbr" name="scala.Either">Either</a>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.rogach.miltamm.Keys.check.A">A</span>]</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Create a &quot;checked&quot; converter.</p><div class="fullcomment"><div class="comment cmt"><p>Create a &quot;checked&quot; converter. Before feeding the string into converter, it is matched against a given regex. In case of error, the message is generated, containing the regex as explanation..</p></div><dl class="paramcmts block"><dt class="param">rgx</dt><dd class="cmt"><p>regex to check with</p></dd><dt class="param">conv</dt><dd class="cmt"><p>converter to wrap
-</p></dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -310,20 +255,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="org.rogach.miltamm.Keys#int" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="int(q:String,prompt:String):org.rogach.miltamm.Key[Int]"></a>
-      <a id="int(String,String):Key[Int]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">int</span><span class="params">(<span name="q">q: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="prompt">prompt: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;(integer value): &quot;</span></span>)</span><span class="result">: <a href="Key.html" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="scala.Int">Int</span>]</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Create an integer key, that would ask the user for a number when computed.</p><div class="fullcomment"><div class="comment cmt"><p>Create an integer key, that would ask the user for a number when computed.</p></div><dl class="paramcmts block"><dt class="param">q</dt><dd class="cmt"><p>question string
-</p></dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -376,48 +307,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.rogach.miltamm.Keys#select" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="select(q:String,vals:(String,String)*):org.rogach.miltamm.Key[String]"></a>
-      <a id="select(String,(String,String)*):Key[String]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">select</span><span class="params">(<span name="q">q: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="vals">vals: (<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>)*</span>)</span><span class="result">: <a href="Key.html" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Create an string key, that would ask the user to choose from a number of options when computing.</p><div class="fullcomment"><div class="comment cmt"><p>Create an string key, that would ask the user to choose from a number of options when computing.</p></div><dl class="paramcmts block"><dt class="param">q</dt><dd class="cmt"><p>question string</p></dd><dt class="param">vals</dt><dd class="cmt"><p>List of tuples - (key, description). Description is shown to the user, key is returned for internal use.
-</p></dd></dl></div>
-    </li><li name="org.rogach.miltamm.Keys#static" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="static[A](value:A):org.rogach.miltamm.Key[A]"></a>
-      <a id="static[A](A):Key[A]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">static</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="value">value: <span class="extype" name="org.rogach.miltamm.Keys.static.A">A</span></span>)</span><span class="result">: <a href="Key.html" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="org.rogach.miltamm.Keys.static.A">A</span>]</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Create a key with a pre-defined value.</p><div class="fullcomment"><div class="comment cmt"><p>Create a key with a pre-defined value.</p></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>Predefined value
-</p></dd></dl></div>
-    </li><li name="org.rogach.miltamm.Keys#string" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="string(q:String,prompt:String,rgx:scala.util.matching.Regex):org.rogach.miltamm.Key[String]"></a>
-      <a id="string(String,String,Regex):Key[String]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">string</span><span class="params">(<span name="q">q: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="prompt">prompt: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&gt; &quot;</span></span>, <span name="rgx">rgx: <span class="extype" name="scala.util.matching.Regex">Regex</span> = <span class="symbol">&quot;.*&quot;.r</span></span>)</span><span class="result">: <a href="Key.html" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">Create a string key, that would ask the user for a value when computed.</p><div class="fullcomment"><div class="comment cmt"><p>Create a string key, that would ask the user for a value when computed.</p></div><dl class="paramcmts block"><dt class="param">q</dt><dd class="cmt"><p>question string
-</p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -431,7 +320,7 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.util.DynamicVariable#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>
       <h4 class="signature">
@@ -440,10 +329,36 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>DynamicVariable → AnyRef → Any</dd></dl></div>
+    </li><li name="scala.util.DynamicVariable#value" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="value:T"></a>
+      <a id="value:Conf"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">value</span><span class="result">: <a href="Conf.html" class="extype" name="org.rogach.miltamm.Conf">Conf</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>DynamicVariable</dd></dl></div>
+    </li><li name="scala.util.DynamicVariable#value_=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="value_=(newval:&lt;?&gt;):Unit"></a>
+      <a id="value_=(Conf):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: value_$eq" class="name">value_=</span><span class="params">(<span name="newval">newval: <a href="Conf.html" class="extype" name="org.rogach.miltamm.Conf">Conf</a></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>DynamicVariable</dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -492,6 +407,19 @@
                 <span class="name">@throws</span><span class="args">()</span>
               
         </dd></dl></div>
+    </li><li name="scala.util.DynamicVariable#withValue" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="withValue[S](newval:T)(thunk:=&gt;S):S"></a>
+      <a id="withValue[S](Conf)(⇒S):S"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withValue</span><span class="tparams">[<span name="S">S</span>]</span><span class="params">(<span name="newval">newval: <a href="Conf.html" class="extype" name="org.rogach.miltamm.Conf">Conf</a></span>)</span><span class="params">(<span name="thunk">thunk: ⇒ <span class="extype" name="scala.util.DynamicVariable.withValue.S">S</span></span>)</span><span class="result">: <span class="extype" name="scala.util.DynamicVariable.withValue.S">S</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>DynamicVariable</dd></dl></div>
     </li></ol>
             </div>
 
@@ -501,7 +429,9 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.AnyRef">
+        <div class="parent" name="scala.util.DynamicVariable">
+              <h3>Inherited from <span class="extype" name="scala.util.DynamicVariable">DynamicVariable</span>[<a href="Conf.html" class="extype" name="org.rogach.miltamm.Conf">Conf</a>]</h3>
+            </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <a href="../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>

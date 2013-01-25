@@ -44,7 +44,8 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Compiles build files for miltamm.
+</p></div><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><a href="../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -184,19 +185,34 @@
                 <span class="name">@throws</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="org.rogach.miltamm.BuildCompiler#compile" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="compile(file:String):Unit"></a>
-      <a id="compile(String):Unit"></a>
+    </li><li name="org.rogach.miltamm.BuildCompiler#compile" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="compile(source:String):org.rogach.miltamm.BuildTemplate"></a>
+      <a id="compile(String):BuildTemplate"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">compile</span><span class="params">(<span name="file">file: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">compile</span><span class="params">(<span name="source">source: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="BuildTemplate.html" class="extype" name="org.rogach.miltamm.BuildTemplate">BuildTemplate</a></span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">Compile string as a build file.</p><div class="fullcomment"><div class="comment cmt"><p>Compile string as a build file.</p></div><dl class="paramcmts block"><dt class="param">source</dt><dd class="cmt"><p>A string, containing build definition.
+</p></dd></dl></div>
+    </li><li name="org.rogach.miltamm.BuildCompiler#compileFile" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="compileFile(file:String,opts:org.rogach.miltamm.Options):org.rogach.miltamm.BuildTemplate"></a>
+      <a id="compileFile(String,Options):BuildTemplate"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">compileFile</span><span class="params">(<span name="file">file: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="opts">opts: <a href="Options.html" class="extype" name="org.rogach.miltamm.Options">Options</a></span>)</span><span class="result">: <a href="BuildTemplate.html" class="extype" name="org.rogach.miltamm.BuildTemplate">BuildTemplate</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Compiles a given file.</p><div class="fullcomment"><div class="comment cmt"><p>Compiles a given file.</p></div><dl class="paramcmts block"><dt class="param">file</dt><dd class="cmt"><p>The name of file to compile
+</p></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>

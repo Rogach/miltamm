@@ -44,7 +44,9 @@
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Encapsulates the value to be computed.
+When the value is computed, caches it.</p></div><dl class="paramcmts block"><dt class="param">calc</dt><dd class="cmt"><p>function to call when calculating value
+</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -84,7 +86,7 @@
         <div id="allMembers">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
-              <ol><li name="org.rogach.miltamm.Key#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+              <ol><li name="org.rogach.miltamm.Key#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="&lt;init&gt;(calc:()=&gt;A):org.rogach.miltamm.Key[A]"></a>
       <a id="&lt;init&gt;:Key[A]"></a>
       <h4 class="signature">
@@ -96,7 +98,8 @@
         <span class="name">Key</span><span class="params">(<span name="calc">calc: () ⇒ <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>)</span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">calc</dt><dd class="cmt"><p>function to call when calculating value
+</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -171,7 +174,7 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="org.rogach.miltamm.Key#apply" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="org.rogach.miltamm.Key#apply" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="apply():A"></a>
       <a id="apply():A"></a>
       <h4 class="signature">
@@ -183,7 +186,8 @@
         <span class="name">apply</span><span class="params">()</span><span class="result">: <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">Get this key's value.</p><div class="fullcomment"><div class="comment cmt"><p>Get this key's value. If possible, value is retrieved from cache.
+</p></div></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -209,7 +213,7 @@
         <span class="name">calc</span><span class="params">(<span name="fn">fn: ⇒ <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>)</span><span class="result">: <a href="" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="org.rogach.miltamm.Key.A">A</span>]</span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">Creates a new key, with other computation inside.</p>
     </li><li name="org.rogach.miltamm.Key#calc" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="calc:()=&gt;A"></a>
       <a id="calc:()⇒A"></a>
@@ -222,7 +226,8 @@
         <span class="name">calc</span><span class="result">: () ⇒ <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">function to call when calculating value
+</p>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -268,7 +273,7 @@
                 <span class="name">@throws</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="org.rogach.miltamm.Key#flatMap" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="org.rogach.miltamm.Key#flatMap" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="flatMap[B](f:A=&gt;org.rogach.miltamm.Key[B]):org.rogach.miltamm.Key[B]"></a>
       <a id="flatMap[B]((A)⇒Key[B]):Key[B]"></a>
       <h4 class="signature">
@@ -280,8 +285,8 @@
         <span class="name">flatMap</span><span class="tparams">[<span name="B">B</span>]</span><span class="params">(<span name="f">f: (<span class="extype" name="org.rogach.miltamm.Key.A">A</span>) ⇒ <a href="" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="org.rogach.miltamm.Key.flatMap.B">B</span>]</span>)</span><span class="result">: <a href="" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="org.rogach.miltamm.Key.flatMap.B">B</span>]</span>
       </span>
       </h4>
-      
-    </li><li name="org.rogach.miltamm.Key#get" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Flat-maps the value insid the key.</p><div class="fullcomment"><div class="comment cmt"><p>Flat-maps the value insid the key. This funciton enables use of Key in for-comprehensions.</p></div></div>
+    </li><li name="org.rogach.miltamm.Key#get" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="get:Option[A]"></a>
       <a id="get:Option[A]"></a>
       <h4 class="signature">
@@ -293,7 +298,7 @@
         <span class="name">get</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="org.rogach.miltamm.Key.A">A</span>]</span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">Get this key value from cache.</p><div class="fullcomment"><div class="comment cmt"><p>Get this key value from cache. If it wasn't computed yet, returns <code>None</code>.</p></div></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <a id="getClass():Class[_]"></a>
@@ -319,7 +324,7 @@
         <span class="name">isDefined</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">Was this value already computed?</p>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -345,8 +350,8 @@
         <span class="name">map</span><span class="tparams">[<span name="B">B</span>]</span><span class="params">(<span name="f">f: (<span class="extype" name="org.rogach.miltamm.Key.A">A</span>) ⇒ <span class="extype" name="org.rogach.miltamm.Key.map.B">B</span></span>)</span><span class="result">: <a href="" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="org.rogach.miltamm.Key.map.B">B</span>]</span>
       </span>
       </h4>
-      
-    </li><li name="org.rogach.miltamm.Key#name" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Maps the value inside the key.</p>
+    </li><li name="org.rogach.miltamm.Key#name" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="name(n:String):org.rogach.miltamm.Key[A]"></a>
       <a id="name(String):Key[A]"></a>
       <h4 class="signature">
@@ -358,7 +363,7 @@
         <span class="name">name</span><span class="params">(<span name="n">n: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="org.rogach.miltamm.Key.A">A</span>]</span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">Sets the name of this key.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the name of this key. Returns the key itself.</p></div></div>
     </li><li name="org.rogach.miltamm.Key#name" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="name:String"></a>
       <a id="name:String"></a>
@@ -371,7 +376,7 @@
         <span class="name">name</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
-      
+      <p class="shortcomment cmt">Name of the key</p>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -424,6 +429,20 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.rogach.miltamm.Key#unless" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="unless(bool:org.rogach.miltamm.Key[Boolean],or:=&gt;A):org.rogach.miltamm.Key[A]"></a>
+      <a id="unless(Key[Boolean],⇒A):Key[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">unless</span><span class="params">(<span name="bool">bool: <a href="" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="scala.Boolean">Boolean</span>]</span>, <span name="or">or: ⇒ <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>)</span><span class="result">: <a href="" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="org.rogach.miltamm.Key.A">A</span>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Sets this key to be computed only if the provided key is false.</p><div class="fullcomment"><div class="comment cmt"><p>Sets this key to be computed only if the provided key is false.</p></div><dl class="paramcmts block"><dt class="param">bool</dt><dd class="cmt"><p>If is false, then this value is unchanged. If true, default value is returned.</p></dd><dt class="param">or</dt><dd class="cmt"><p>Value to use if boolean key was true.
+</p></dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -472,6 +491,20 @@
                 <span class="name">@throws</span><span class="args">()</span>
               
         </dd></dl></div>
+    </li><li name="org.rogach.miltamm.Key#when" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="when(bool:org.rogach.miltamm.Key[Boolean],or:=&gt;A):org.rogach.miltamm.Key[A]"></a>
+      <a id="when(Key[Boolean],⇒A):Key[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">when</span><span class="params">(<span name="bool">bool: <a href="" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="scala.Boolean">Boolean</span>]</span>, <span name="or">or: ⇒ <span class="extype" name="org.rogach.miltamm.Key.A">A</span></span>)</span><span class="result">: <a href="" class="extype" name="org.rogach.miltamm.Key">Key</a>[<span class="extype" name="org.rogach.miltamm.Key.A">A</span>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Sets this key to be computed only if the provided key is true.</p><div class="fullcomment"><div class="comment cmt"><p>Sets this key to be computed only if the provided key is true.</p></div><dl class="paramcmts block"><dt class="param">bool</dt><dd class="cmt"><p>If is true, then this value is unchanged. If false, default value is returned.</p></dd><dt class="param">or</dt><dd class="cmt"><p>Value to use if boolean key was false.
+</p></dd></dl></div>
     </li></ol>
             </div>
 
