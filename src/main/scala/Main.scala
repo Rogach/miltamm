@@ -25,6 +25,7 @@ object Main extends App {
         val relPath = Path(f.getAbsolutePath).drop(templateDir.size)
         val action = route(relPath)
         action.to.map(dest => new File(outputDir ++ dest ++ relPath.drop(action.from.size) map ("/"+) mkString)).foreach { dest =>
+          println(s"File: $f")
           action.transform.fold { 
             // short-circuit, since we don't need to transform contents of the file
             FileUtils.copyFile(f, dest)
