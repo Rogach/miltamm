@@ -1,6 +1,7 @@
 package org.rogach.miltamm
 
 import util.matching.Regex
+import scala.reflect.runtime.universe._
 
 /** Helpers to create and manipulate Key values. */
 trait Keys {
@@ -8,7 +9,7 @@ trait Keys {
   /** Create a key with a pre-defined value.
     * @param value Predefined value
     */
-  def static[A](value: A) = Key(() => value)
+  def static[A](value: A)(implicit tt: TypeTag[A]) = Key(() => value, tt)
 
   /** Ask user a question.
     * @param q Question text
@@ -58,17 +59,20 @@ trait Keys {
   /** Create a boolean key, that would ask the user for a value when computed.
     * @param q question string
     */
-  def bool(q: String, prompt: String = "[y/n]: "): Key[Boolean] = Key(() => ask(q, prompt, boolConverter))
+  def bool(q: String, prompt: String = "[y/n]: "): Key[Boolean] = 
+    Key(() => ask(q, prompt, boolConverter), implicitly[TypeTag[Boolean]])
   
   /** Create a string key, that would ask the user for a value when computed.
     * @param q question string
     */
-  def string(q: String, prompt: String = "> ", rgx: Regex = ".*".r): Key[String] = Key(() => ask(q, prompt, check(rgx, Right(_))))
+  def string(q: String, prompt: String = "> ", rgx: Regex = ".*".r): Key[String] = 
+    Key(() => ask(q, prompt, check(rgx, Right(_))), implicitly[TypeTag[String]])
   
   /** Create an integer key, that would ask the user for a number when computed.
     * @param q question string
     */
-  def int(q: String, prompt: String = "(integer value): "): Key[Int] = Key(() => ask(q, prompt, x => Right(x.trim.toInt)))
+  def int(q: String, prompt: String = "(integer value): "): Key[Int] = 
+    Key(() => ask(q, prompt, x => Right(x.trim.toInt)), implicitly[TypeTag[Int]])
   
   /** Create an string key, that would ask the user to choose from a number of options when computing.
     * @param q question string
@@ -82,6 +86,6 @@ trait Keys {
         Right(vals(i-1)._1)
       } else Left("Please input number in range %d--%d" format (1, vals.size))
     }
-    Key(() => ask(header, "(1-%d): " format vals.size, parser))
+    Key(() => ask(header, "(1-%d): " format vals.size, parser), implicitly[TypeTag[String]])
   }
 }
