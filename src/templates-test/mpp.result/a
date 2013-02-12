@@ -1,0 +1,4 @@
+package org.${name}.miltamm
+
+val ds = new DataSource("http://example.com")
+// examples were excluded

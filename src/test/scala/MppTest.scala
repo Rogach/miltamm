@@ -40,5 +40,8 @@ class MppTest extends MiltammTest {
   test("if/elif/elif - false/false/true") {
     mpp().process(Seq("#if false","apples","#elif false","bananas","#elif true","coconut","#fi")) ==== Seq("coconut")
   }
+  test("two ifs in a row") {
+    mpp().process(Seq("#if false", "apples", "#fi", "#if true", "bananas", "#fi")) ==== Seq("bananas")
+  }
 
 }

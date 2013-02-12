@@ -14,7 +14,7 @@ class MPP(conf: Conf) extends Parsers {
   type Elem = String
 
   def process(lines: Seq[String]): Seq[String] = {
-    block(new ListReader(lines.toList)) match {
+    phrase(block)(new ListReader(lines.toList)) match {
       case Success(res, _) => res
       case Failure(msg, rest) =>
         Util.log.error(s"preprocessor parse failure: '$msg' on '${rest.first}'")
@@ -59,7 +59,8 @@ class MPP(conf: Conf) extends Parsers {
     }
   }
   
-  def block: Parser[Seq[String]] = If | plain.*
+  def block: Parser[Seq[String]] = 
+    rep(If | (plain.* filter (_.size > 0))) map (_.flatten)
 
   def If: Parser[Seq[String]] = 
     hash("if") ~ block ~ (hash("elif") ~ block).* ~ (hash("else") ~ block).? ~ hash("fi") ^^
@@ -83,7 +84,7 @@ class MPP(conf: Conf) extends Parsers {
     
     val vals: Seq[String] = conf.keys.collect {
       case key if key.tp.tpe =:= booleanTag.tpe || key.tp.tpe =:= intTag.tpe || key.tp.tpe =:= doubleTag.tpe =>
-        s"val ${key.name} = ${key.apply}"
+        s"val ${key.name} = ${key.apply};"
       case key if key.tp.tpe =:= stringTag.tpe =>
         s""" val ${key.name} = "${key.apply}"; """
     }

@@ -13,6 +13,11 @@ trait Routes {
   /** Creates a route, that moves a file from one relative location to another. */
   def move(from: Path, to: Path) = new Route(from, Some(to), None, Nil)
 
+  /** Creates a route, that preprocesses the file contents using MPP. */
+  def preprocess(p: Path) = new Route(p, Some(p), Some(MPP), Nil)
+  
+  def movePreprocess(from: Path, to: Path) = new Route(from, Some(to), Some(MPP), Nil)
+
   /** Creates a route, that copies the file as-is from template to destination. */
   def copy(p: Path) = new Route(p, Some(p), None, Nil)
 
@@ -47,6 +52,8 @@ trait Routes {
       )
     }
     def >>(to: Path) = move(Path(from), to)
+    def >|>(to: Path) = movePreprocess(Path(from), to)
+    def pp = preprocess(Path(from))
   }
 }
 

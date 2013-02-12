@@ -1,0 +1,10 @@
+package org.${name}.miltamm
+
+#if init
+val ds = new DataSource("http://example.com")
+#fi
+#if examples
+ds.query("select 1")
+#else
+// examples were excluded
+#fi
