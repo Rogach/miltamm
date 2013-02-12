@@ -6,14 +6,14 @@ import scala.util.parsing.input._
 /** Miltamm PreProcessor */
 object MPP extends ((Conf, Seq[String]) => Seq[String]) {
   def apply(conf: Conf, lines: Seq[String]) = {
-    new MPP(conf).parse(lines)
+    new MPP(conf).process(lines)
   }
 }
 
 class MPP(conf: Conf) extends Parsers {
   type Elem = String
 
-  def parse(lines: Seq[String]): Seq[String] = {
+  def process(lines: Seq[String]): Seq[String] = {
     block(new ListReader(lines.toList)) match {
       case Success(res, _) => res
       case Failure(msg, rest) =>
@@ -34,28 +34,33 @@ class MPP(conf: Conf) extends Parsers {
   def hash(name: String): Parser[String] = Parser { in =>
     if (in.atEnd) Failure("end of input", in.rest)
     else if (in.first.trim.startsWith("#"+name))
-           Success(in.first, in.rest)
+           Success(in.first.trim.stripPrefix("#"+name), in.rest)
          else
-           Failure(s"can't match '#%name' on '${in.first}'", in)
+           Failure(s"can't match '#$name' on '${in.first}'", in)
   }
   def plain: Parser[String] = Parser { in =>
-    val s = in.first
-    if (s.startsWith("#if") ||
-        s.startsWith("#elif") ||
-        s.startsWith("#else") ||
-        s.startsWith("#fi")) {
-      Failure(s"this is not a plain line, contains reserved identifier: '${in.first}'", in)
+    if (in.atEnd) {
+      Failure("end of file", in)
     } else {
-      Success(
-        conf.keys.foldLeft(in.first)(
-          (line, key) => line.replace("#{" + key.name + "}", key.apply.toString)
-        ),
-        in.rest
-      )
+      lazy val s = in.first.trim
+      if (s.startsWith("#if") ||
+          s.startsWith("#elif") ||
+          s.startsWith("#else") ||
+          s.startsWith("#fi")) {
+        Failure(s"this is not a plain line, contains reserved identifier: '${in.first}'", in)
+      } else {
+        Success(
+          conf.keys.foldLeft(in.first)(
+            (line, key) => line.replace("#{" + key.name + "}", key.apply.toString)
+          ),
+          in.rest
+        )
+      }
     }
   }
   
-  def block: Parser[Seq[String]] = If ||| plain.*
+  def block: Parser[Seq[String]] = If | plain.*
+
   def If: Parser[Seq[String]] = 
     hash("if") ~ block ~ (hash("elif") ~ block).* ~ (hash("else") ~ block).? ~ hash("fi") ^^
     { case exprIf ~ trueBlock ~ elifs ~ elseBlock ~ fi =>
@@ -80,10 +85,10 @@ class MPP(conf: Conf) extends Parsers {
       case key if key.tp.tpe =:= booleanTag.tpe || key.tp.tpe =:= intTag.tpe || key.tp.tpe =:= doubleTag.tpe =>
         s"val ${key.name} = ${key.apply}"
       case key if key.tp.tpe =:= stringTag.tpe =>
-        s""" val ${key.name} = "${key.apply}" """
+        s""" val ${key.name} = "${key.apply}"; """
     }
     
-    toolbox.eval(toolbox.parse(vals.mkString(";") + ";" + expr)) match {
+    toolbox.eval(toolbox.parse(vals.mkString + expr)) match {
       case b: Boolean => b
       case other => 
         Util.log.error(s"Expected boolean, found '${other.getClass}': $expr")

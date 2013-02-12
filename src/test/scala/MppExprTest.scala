@@ -4,23 +4,18 @@ import BuildImports._
 
 class MppExprTest extends MiltammTest {
   test ("single boolean true value") {
-    val mpp = new MPP(Conf("", "", Seq(static(true).name("a"))))
-    mpp.parseBoolean("a") ==== true
+    mpp(static(true).name("a")).parseBoolean("a") ==== true
   }
   test ("single boolean false value") {
-    val mpp = new MPP(Conf("", "", Seq(static(false).name("a"))))
-    mpp.parseBoolean("a") ==== false
+    mpp(static(false).name("a")).parseBoolean("a") ==== false
   }
   test ("int comparison") {
-    val mpp = new MPP(Conf("", "", Seq()))
-    mpp.parseBoolean("1 == 1")
+    mpp().parseBoolean("1 == 1")
   }
   test ("int key comparison") {
-    val mpp = new MPP(Conf("", "", Seq(static(1).name("a"), static(1).name("b"))))
-    mpp.parseBoolean("a == b")
+    mpp(static(1).name("a"), static(1).name("b")).parseBoolean("a == b")
   }
   test ("int key sum comparison") {
-    val mpp = new MPP(Conf("", "", Seq(static(1).name("a"), static(2).name("b"))))
-    mpp.parseBoolean("a + b == 3")
+    mpp(static(1).name("a"), static(2).name("b")).parseBoolean("a + b == 3")
   }
 }
