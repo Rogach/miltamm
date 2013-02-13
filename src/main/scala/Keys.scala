@@ -13,13 +13,13 @@ trait Keys {
 
   /** Ask user a question.
     * @param q Question text
-    * @param prompt Prompt to be displayed before the answer input.
+    * @param default Value to be used, if user entered empty string
     * @param conv Converter for inputted value. In case of `Left`, string is displayed to the user and he is asked to repeat the input.
     */
-  def ask[A](q: String, prompt: String = "", conv: String => Either[String, A]): A = {
+  def ask[A](q: String, default: String, conv: String => Either[String, A]): A = {
     while (true) {
       Console.println(q)
-      Console.print(prompt)
+      Console.printf("[%s]: ", default)
       Console.flush()
       val in = Console.readLine()
       if (in == null) {
@@ -27,9 +27,8 @@ trait Keys {
         sys.exit(1)
       }
       try {
-        if (in.trim.nonEmpty)
-          conv(in).fold(println, return _)
-        () // stop compiler from warning me about something
+        conv(if (in.trim.nonEmpty) in else default).fold(println, return _)
+        () // stop the compiler from warning me about something
       } catch { case e: Exception =>
         printf("Error while parsing: %s - %s\n", e.getClass, e.getMessage)
       }
@@ -39,8 +38,8 @@ trait Keys {
   
   /** Converts Y/N string into boolean value. */
   val boolConverter = (_: String).head.toLower match {
-    case 'y' => Right(true)
-    case 'n' => Right(false)
+    case 'y' | 't' => Right(true)
+    case 'n' | 'f' => Right(false)
     case _ => Left("Failed to parse boolean value")
   }
 
@@ -58,21 +57,24 @@ trait Keys {
 
   /** Create a boolean key, that would ask the user for a value when computed.
     * @param q question string
+    * @param default Value to use if user entered empty string
     */
-  def bool(q: String, prompt: String = "[y/n]: "): Key[Boolean] = 
-    Key(() => ask(q, prompt, boolConverter), implicitly[TypeTag[Boolean]])
+  def bool(q: String, default: Boolean): Key[Boolean] = 
+    Key(() => ask(q, if (default) "yes" else "false", boolConverter), implicitly[TypeTag[Boolean]])
   
   /** Create a string key, that would ask the user for a value when computed.
     * @param q question string
+    * @param default Value to use if user entered empty string
     */
-  def string(q: String, prompt: String = "> ", rgx: Regex = ".*".r): Key[String] = 
-    Key(() => ask(q, prompt, check(rgx, Right(_))), implicitly[TypeTag[String]])
+  def string(q: String, default: String, rgx: Regex = ".*".r): Key[String] = 
+    Key(() => ask(q, default, check(rgx, Right(_))), implicitly[TypeTag[String]])
   
   /** Create an integer key, that would ask the user for a number when computed.
     * @param q question string
+    * @param default Value to use if user entered empty string
     */
-  def int(q: String, prompt: String = "(integer value): "): Key[Int] = 
-    Key(() => ask(q, prompt, x => Right(x.trim.toInt)), implicitly[TypeTag[Int]])
+  def int(q: String, default: Int): Key[Int] = 
+    Key(() => ask(q, default.toString, x => Right(x.trim.toInt)), implicitly[TypeTag[Int]])
   
   /** Create an string key, that would ask the user to choose from a number of options when computing.
     * @param q question string
@@ -86,6 +88,6 @@ trait Keys {
         Right(vals(i-1)._1)
       } else Left("Please input number in range %d--%d" format (1, vals.size))
     }
-    Key(() => ask(header, "(1-%d): " format vals.size, parser), implicitly[TypeTag[String]])
+    Key(() => ask(header, "1", parser), implicitly[TypeTag[String]])
   }
 }
