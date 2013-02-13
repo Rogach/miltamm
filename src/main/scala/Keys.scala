@@ -60,7 +60,7 @@ trait Keys {
     * @param default Value to use if user entered empty string
     */
   def bool(q: String, default: Boolean): Key[Boolean] = 
-    Key(() => ask(q, if (default) "yes" else "false", boolConverter), implicitly[TypeTag[Boolean]])
+    Key(() => ask(q, if (default) "yes" else "no", boolConverter), implicitly[TypeTag[Boolean]])
   
   /** Create a string key, that would ask the user for a value when computed.
     * @param q question string
