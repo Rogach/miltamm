@@ -25,7 +25,7 @@ trait Routes {
     * @param b key to check
     * @param route Route to delegate to, if key is true.
     */
-  def iif(b: Key[Boolean])(route: PartialFunction[Path, Action]): PartialFunction[Path, Action] = {
+  def iff(b: Key[Boolean])(route: PartialFunction[Path, Action]): PartialFunction[Path, Action] = {
     if (b()) route else new PartialFunction[Path, Action] {
       def isDefinedAt(f: Path) = route.isDefinedAt(f)
       def apply(f: Path) = new Action(f, None, None)
