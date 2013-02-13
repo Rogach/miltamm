@@ -10,8 +10,9 @@ object Main extends App {
 
   def run(args: Seq[String]) = {
     val opts = new Options(args)
-    val build = BuildCompiler.compileFile(opts.buildFile.get.getOrElse(opts.template() + "/miltamm-template.scala"), opts)
-    val conf = Conf(opts.template(), opts.destination(), build.resolveKeys())
+    val template = prepareTemplate(opts)
+    val build = BuildCompiler.compileFile(opts.buildFile.get.getOrElse(template + "/miltamm-template.scala"), opts)
+    val conf = Conf(template, opts.destination(), build.resolveKeys())
     val templateDir = Path(new File(conf.template).getAbsolutePath)
     val outputDir = Path(new File(conf.destination).getAbsolutePath)
 
@@ -34,6 +35,24 @@ object Main extends App {
           }
         }
       }
+    }
+  }
+
+  /** Prepares the template for processing. (by downloading it, if required) 
+    * @return the path to the directory on filesystem, that contains the prepared template
+    */
+  def prepareTemplate(opts: Options): String = {
+    if (opts.git()) {
+      val tmpDir = Util.getTmpDir
+      Util.runCommand("git", "clone", "--progress", opts.template(), tmpDir)
+      tmpDir + "/" + opts.gitSubpath()
+    } else if (opts.rsync()) {
+      val tmpDir = Util.getTmpDir
+      Util.runCommand("rsync", "-avrz", opts.template(), tmpDir)
+      tmpDir
+    } else {
+      // everything is already in place
+      opts.template()
     }
   }
 
