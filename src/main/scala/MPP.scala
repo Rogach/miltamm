@@ -34,7 +34,7 @@ class MPP(conf: Conf) extends Parsers {
   def hash(name: String): Parser[String] = Parser { in =>
     if (in.atEnd) Failure("end of input", in.rest)
     else if (in.first.trim.startsWith("#"+name))
-           Success(in.first.trim.stripPrefix("#"+name), in.rest)
+           Success(in.first.trim.stripPrefix("#"+name).trim, in.rest)
          else
            Failure(s"can't match '#$name' on '${in.first}'", in)
   }
@@ -72,28 +72,51 @@ class MPP(conf: Conf) extends Parsers {
     }
     
   def parseBoolean(expr: String): Boolean = {
-    import scala.reflect.runtime._;
-    import scala.tools.reflect.ToolBox;
-    val toolbox = universe.runtimeMirror(getClass.getClassLoader).mkToolBox()
-    import scala.reflect.runtime.universe._
-    
-    val booleanTag = implicitly[TypeTag[Boolean]]
-    val stringTag = implicitly[TypeTag[String]]
-    val intTag = implicitly[TypeTag[Int]]
-    val doubleTag = implicitly[TypeTag[Double]]
-    
-    val vals: Seq[String] = conf.keys.collect {
-      case key if key.tp.tpe =:= booleanTag.tpe || key.tp.tpe =:= intTag.tpe || key.tp.tpe =:= doubleTag.tpe =>
-        s"val ${key.name} = ${key.apply};"
-      case key if key.tp.tpe =:= stringTag.tpe =>
-        s""" val ${key.name} = "${key.apply}"; """
-    }
-    
-    toolbox.eval(toolbox.parse(vals.mkString + expr)) match {
-      case b: Boolean => b
-      case other => 
-        Util.log.error(s"Expected boolean, found '${other.getClass}': $expr")
-        sys.exit(1)
+    import scala.reflect.runtime.universe._;
+    val bool = implicitly[TypeTag[Boolean]]
+
+    conf.keys.find(k => k.name == expr && k.tp.tpe =:= bool.tpe).map { key =>
+      key().asInstanceOf[Boolean]
+    }.orElse {
+      val andRgx = """(.*)&&(.*)""".r
+      val orRgx = """(.*)\|\|(.*)""".r
+      expr match {
+        case andRgx(a,b) => 
+          (conf.keys.find(_.name == a.trim), conf.keys.find(_.name == b.trim)) match {
+            case (Some(ak), Some(bk)) if ak.tp.tpe =:= bool.tpe && bk.tp.tpe =:= bool.tpe  => Some(ak().asInstanceOf[Boolean] && bk().asInstanceOf[Boolean])
+            case _ => None
+          }
+        case orRgx(a,b) =>
+          (conf.keys.find(_.name == a.trim), conf.keys.find(_.name == b.trim)) match {
+            case (Some(ak), Some(bk)) if ak.tp.tpe =:= bool.tpe && bk.tp.tpe =:= bool.tpe  => Some(ak().asInstanceOf[Boolean] || bk().asInstanceOf[Boolean])
+            case _ => None
+          }
+        case _ => None
+      }
+    }.getOrElse {
+      import scala.reflect.runtime._;
+      import scala.tools.reflect.ToolBox;
+      val toolbox = universe.runtimeMirror(this.getClass.getClassLoader).mkToolBox()
+      import scala.reflect.runtime.universe._;
+      
+      val booleanTag = implicitly[TypeTag[Boolean]]
+      val stringTag = implicitly[TypeTag[String]]
+      val intTag = implicitly[TypeTag[Int]]
+      val doubleTag = implicitly[TypeTag[Double]]
+      
+      val vals: Seq[String] = conf.keys.collect {
+        case key if key.tp.tpe =:= booleanTag.tpe || key.tp.tpe =:= intTag.tpe || key.tp.tpe =:= doubleTag.tpe =>
+          s"val ${key.name} = ${key.apply};"
+        case key if key.tp.tpe =:= stringTag.tpe =>
+          s""" val ${key.name} = "${key.apply}"; """
+      }
+      
+      toolbox.eval(toolbox.parse(vals.mkString + expr)) match {
+        case b: Boolean => b
+        case other => 
+          Util.log.error(s"Expected boolean, found '${other.getClass}': $expr")
+          sys.exit(1)
+      }
     }
   }
   

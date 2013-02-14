@@ -9,6 +9,18 @@ class MppExprTest extends MiltammTest {
   test ("single boolean false value") {
     mpp(static(false).name("a")).parseBoolean("a") ==== false
   }
+  test ("booleans - or") {
+    mpp(static(true).name("a"), static(true).name("b")).parseBoolean("a || b") ==== true
+    mpp(static(true).name("a"), static(false).name("b")).parseBoolean("a || b") ==== true
+    mpp(static(false).name("a"), static(true).name("b")).parseBoolean("a || b") ==== true
+    mpp(static(false).name("a"), static(false).name("b")).parseBoolean("a || b") ==== false
+  }
+  test ("booleans - and") {
+    mpp(static(true).name("a"), static(true).name("b")).parseBoolean("a && b") ==== true
+    mpp(static(true).name("a"), static(false).name("b")).parseBoolean("a && b") ==== false
+    mpp(static(false).name("a"), static(true).name("b")).parseBoolean("a && b") ==== false
+    mpp(static(false).name("a"), static(false).name("b")).parseBoolean("a && b") ==== false
+  }
   test ("int comparison") {
     mpp().parseBoolean("1 == 1")
   }
