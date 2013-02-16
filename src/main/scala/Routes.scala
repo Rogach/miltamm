@@ -45,13 +45,10 @@ trait Routes {
     * Replaces keys with their values in the destination part.
     */
   implicit class ToMove(from: String) {
-    def >>(to: String) = {
-      move(
-        Path(from),
-        Path(currentConf.value.keys.foldLeft(to)((path, key) => path.replace("#{" + key.name + "}", key.apply.toString)))
-      )
-    }
+    def replaceKeys(str: String) = currentConf.value.keys.foldLeft(str)((path, key) => path.replace("#{" + key.name + "}", key.apply.toString))
+    def >>(to: String) = move(Path(from), Path(replaceKeys(to)))
     def >>(to: Path) = move(Path(from), to)
+    def >|>(to: String) = movePreprocess(Path(from), Path(replaceKeys(to)))
     def >|>(to: Path) = movePreprocess(Path(from), to)
     def pp = preprocess(Path(from))
   }
