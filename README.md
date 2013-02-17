@@ -10,7 +10,7 @@ The idea is simple:
 
 Miltamm can use the template files located on local filesystem, or download the template from git repository or using rsync.
 
-You can download the runnable jar from [here](https://s3.amazonaws.com/miltamm/miltamm-0.0.2.jar).
+You can download the runnable jar from [here](https://s3.amazonaws.com/miltamm/miltamm-0.0.3.jar).
 
 You can also view [the example template](https://github.com/Rogach/template/tree/master/lift-template).
 
