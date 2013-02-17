@@ -25,10 +25,10 @@ class FullRunTest extends MiltammTest with CapturingTest {
       } catch {
         case e: Throwable =>
           e.printStackTrace
+          assert(false, "unexpected error: " + e)
           null
       }
       FileUtils.write(new File("target/template-output/" + testDir.getName + ".output"), output)
-      assert(exits == List(), "exit was thrown: " + exits)
       compareStrings(output, expectedOutput, "output difference:")
       compareDirs(new File(testDir + ".result"), new File("target/template-output/" + testDir.getName))
     }
@@ -39,7 +39,12 @@ class FullRunTest extends MiltammTest with CapturingTest {
   }
   
   def compareDirs(dir1: File, dir2: File) = {
-    def getFileNames(dir: File) = FileUtils.iterateFiles(dir, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE).toList.map(_.getAbsolutePath.stripPrefix(dir.getAbsolutePath))
+    def getFileNames(dir: File) = 
+      if (dir.exists) 
+        FileUtils.iterateFiles(dir, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE).toList.map(_.getAbsolutePath.stripPrefix(dir.getAbsolutePath))
+      else 
+        Nil
+        
     val files1 = getFileNames(dir1)
     val files2 = getFileNames(dir2)
     files1.foreach { f1 =>

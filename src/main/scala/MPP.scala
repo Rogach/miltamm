@@ -111,11 +111,17 @@ class MPP(conf: Conf) extends Parsers {
           s""" val ${key.name} = "${key.apply}"; """
       }
       
-      toolbox.eval(toolbox.parse(vals.mkString + expr)) match {
-        case b: Boolean => b
-        case other => 
-          Util.log.error(s"Expected boolean, found '${other.getClass}': $expr")
-          sys.exit(1)
+      try {
+        toolbox.eval(toolbox.parse(vals.mkString + expr)) match {
+          case b: Boolean => b
+          case other => 
+            Util.log.error(s"Expected boolean, found '${other.getClass}': $expr")
+            sys.exit(1)
+        }
+      } catch { case e: Throwable =>
+        val msg = e.getMessage.stripPrefix("reflective compilation has failed: \n\n")
+        Util.log.error(s"Error while compiling boolean expression: $msg\n$expr")
+        sys.exit(1)
       }
     }
   }
