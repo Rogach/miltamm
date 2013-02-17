@@ -8,8 +8,13 @@ import collection.JavaConversions._
 object Main extends App {
   run(args)
 
+  object buildOptions {
+    var allDefault = false
+  }
+
   def run(args: Seq[String]) = {
     val opts = new Options(args)
+    buildOptions.allDefault = opts.allDefault()
     val template = prepareTemplate(opts)
     val build = BuildCompiler.compileFile(opts.buildFile.get.getOrElse(template + "/miltamm-template.scala"), opts)
     val conf = Conf(template, opts.destination(), build.resolveKeys())

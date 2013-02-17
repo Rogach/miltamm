@@ -19,6 +19,8 @@ class Options(args: Seq[String]) extends ScallopConf(args) {
   val template = trailArg[String]("template", descr = "location of template directory")
   val destination = trailArg[String]("destination", descr = "where to put the processed template files")
   
+  val allDefault = opt[Boolean](descr = "Do not ask user anything. Use default values for all keys.", default = Some(false))
+  
   val git = opt[Boolean](descr = "treat the template dir as a git repository. If the template is not located at the root of repository, use '--git-subpath' option. This option is only usable if you have git installed on your system.")
   val gitSubpath = opt[String](descr = "subpath in git repo, that should contain the template.", default = Some(""))
   val rsync = opt[Boolean](descr = "treat the template dir as a remote location, downloadable via rsync. This option is only usable if you have rsync installed on your system.")

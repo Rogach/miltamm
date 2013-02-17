@@ -17,23 +17,30 @@ trait Keys {
     * @param conv Converter for inputted value. In case of `Left`, string is displayed to the user and he is asked to repeat the input.
     */
   def ask[A](q: String, default: String, conv: String => Either[String, A]): A = {
-    while (true) {
-      Console.println(q)
-      Console.printf("[%s]: ", default)
-      Console.flush()
-      val in = Console.readLine()
-      if (in == null) {
-        Util.log.error("End of input, aborting compilation")
-        sys.exit(1)
+    if (Main.buildOptions.allDefault) {
+      conv(default).fold(
+        { err => Util.log.error("Error while parsing default key value: $err"); sys.exit(1) },
+        identity
+      )
+    } else {
+      while (true) {
+        Console.println(q)
+        Console.printf("[%s]: ", default)
+        Console.flush()
+        val in = Console.readLine()
+        if (in == null) {
+          Util.log.error("End of input, aborting compilation")
+          sys.exit(1)
+        }
+        try {
+          conv(if (in.trim.nonEmpty) in else default).fold(println, return _)
+          () // stop the compiler from warning me about something
+        } catch { case e: Exception =>
+          printf("Error while parsing: %s - %s\n", e.getClass, e.getMessage)
+        }
       }
-      try {
-        conv(if (in.trim.nonEmpty) in else default).fold(println, return _)
-        () // stop the compiler from warning me about something
-      } catch { case e: Exception =>
-        printf("Error while parsing: %s - %s\n", e.getClass, e.getMessage)
-      }
+      sys.error("Won't happen")
     }
-    sys.error("Won't happen")
   }
   
   /** Converts Y/N string into boolean value. */
