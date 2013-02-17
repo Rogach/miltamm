@@ -24,17 +24,24 @@ class MPP(conf: Conf) extends Parsers {
         sys.exit(1)
     }
   }
-  case class ListReader(l: List[Elem]) extends Reader[Elem] {
+  case class ListReader(l: List[Elem], line: Int = 1) extends Reader[Elem] {
     def atEnd = l.isEmpty
     def first = l.head
-    def pos = NoPosition
-    def rest = if (atEnd) this else ListReader(l.tail)
+    def pos = ListPosition(line, if (atEnd) "" else l.head)
+    def rest = if (atEnd) this else ListReader(l.tail, line + 1)
+  }
+  case class ListPosition(line: Int, lineContents: String) extends Position {
+    val column = 0
+    override def longString: String = toString
+    override def toString = s"$line: $lineContents"
   }
 
-  def hash(name: String): Parser[String] = Parser { in =>
+  /** Case class for the preprocessor instruction (like '#if'). Contains the position in the input and the expression after instruction. */
+  case class Hash(pos: Position, expr: String)
+  def hash(name: String): Parser[Hash] = Parser { in =>
     if (in.atEnd) Failure("end of input", in.rest)
     else if (in.first.trim.startsWith("#"+name))
-           Success(in.first.trim.stripPrefix("#"+name).trim, in.rest)
+           Success(Hash(in.pos, in.first.trim.stripPrefix("#"+name).trim), in.rest)
          else
            Failure(s"can't match '#$name' on '${in.first}'", in)
   }
@@ -64,14 +71,14 @@ class MPP(conf: Conf) extends Parsers {
 
   def If: Parser[Seq[String]] = 
     hash("if") ~ block ~ (hash("elif") ~ block).* ~ (hash("else") ~ block).? ~ hash("fi") ^^
-    { case exprIf ~ trueBlock ~ elifs ~ elseBlock ~ fi =>
-      if (parseBoolean(exprIf)) 
+    { case Hash(posIf, exprIf) ~ trueBlock ~ elifs ~ elseBlock ~ fi =>
+      if (parseBoolean(exprIf, posIf))
         trueBlock
       else
-        elifs.find(elif => parseBoolean(elif._1)).orElse(elseBlock).map(_._2).getOrElse(Nil)
+        elifs.find(elif => parseBoolean(elif._1.expr, elif._1.pos)).orElse(elseBlock).map(_._2).getOrElse(Nil)
     }
     
-  def parseBoolean(expr: String): Boolean = {
+  def parseBoolean(expr: String, pos: Position = NoPosition): Boolean = {
     import scala.reflect.runtime.universe._;
     val bool = implicitly[TypeTag[Boolean]]
 
@@ -114,13 +121,13 @@ class MPP(conf: Conf) extends Parsers {
       try {
         toolbox.eval(toolbox.parse(vals.mkString + expr)) match {
           case b: Boolean => b
-          case other => 
-            Util.log.error(s"Expected boolean, found '${other.getClass}': $expr")
+          case other =>
+            Util.log.error(s"Expected boolean, found '${other.getClass}':\n${pos.longString}")
             sys.exit(1)
         }
       } catch { case e: Throwable =>
         val msg = e.getMessage.stripPrefix("reflective compilation has failed: \n\n")
-        Util.log.error(s"Error while compiling boolean expression: $msg\n$expr")
+        Util.log.error(s"Error while compiling boolean expression:$msg\n${pos.longString}")
         sys.exit(1)
       }
     }
