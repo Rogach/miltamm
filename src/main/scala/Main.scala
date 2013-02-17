@@ -19,7 +19,7 @@ object Main extends App {
     FileUtils.deleteDirectory(new File(conf.destination))
 
     currentConf.withValue(conf) {
-      val route = BuildImports.copy(Nil)
+      val route = BuildImports.preprocess(Nil)
         .append(if (opts.buildFile.get.nonEmpty) Nil else List(BuildImports.ignore(Seq("miltamm-template.scala")))) // exclude template file
         .append(build.routes)
       FileUtils.iterateFiles(new File(conf.template), TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE).foreach { f =>
