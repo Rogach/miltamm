@@ -67,7 +67,7 @@ class MPP(conf: Conf) extends Parsers {
   }
   
   def block: Parser[Seq[String]] = 
-    rep(If | (plain.* filter (_.size > 0))) map (_.flatten)
+    rep(If | rep1(plain)) map (_.flatten)
 
   def If: Parser[Seq[String]] = 
     hash("if") ~ block ~ (hash("elif") ~ block).* ~ (hash("else") ~ block).? ~ hash("fi") ^^
