@@ -36,38 +36,32 @@ class MPP(conf: Conf) extends Parsers {
     override def toString = s"$line: $lineContents"
   }
 
+  private val tags = List("#if", "#elif", "#else", "#fi", "#sep", "#endsep")
   /** Case class for the preprocessor instruction (like '#if'). Contains the position in the input and the expression after instruction. */
   case class Hash(pos: Position, expr: String)
+  def hash(): Parser[String] = Parser { in =>
+    if (in.atEnd) Failure("unexpected end of input", in.rest)
+    else {
+      val f = in.first.trim
+      if (tags.exists(f startsWith _))
+        Success(in.first, in.rest)
+      else
+        Failure(s"Not a control statement: ${in.first}", in)
+    }
+  }
   def hash(name: String): Parser[Hash] = Parser { in =>
-    if (in.atEnd) Failure("end of input", in.rest)
+    if (in.atEnd) Failure("unexpected end of input", in.rest)
     else if (in.first.trim.startsWith("#"+name))
            Success(Hash(in.pos, in.first.trim.stripPrefix("#"+name).trim), in.rest)
          else
            Failure(s"can't match '#$name' on '${in.first}'", in)
   }
-  def plain: Parser[String] = Parser { in =>
-    if (in.atEnd) {
-      Failure("end of file", in)
-    } else {
-      lazy val s = in.first.trim
-      if (s.startsWith("#if") ||
-          s.startsWith("#elif") ||
-          s.startsWith("#else") ||
-          s.startsWith("#fi")) {
-        Failure(s"this is not a plain line, contains reserved identifier: '${in.first}'", in)
-      } else {
-        Success(
-          conf.keys.foldLeft(in.first)(
-            (line, key) => line.replace("#{" + key.name + "}", key.apply.toString)
-          ),
-          in.rest
-        )
-      }
-    }
-  }
+  
+  def plain: Parser[String] =
+    not(hash) ~> elem("plain", _=> true) ^^ (l => conf.keys.foldLeft(l)((line, key) => line.replace("#{" + key.name + "}", key.apply.toString)))
   
   def block: Parser[Seq[String]] = 
-    rep(If | rep1(plain)) map (_.flatten)
+    rep(If | Sep | rep1(plain)) map (_.flatten)
 
   def If: Parser[Seq[String]] = 
     hash("if") ~ block ~ (hash("elif") ~ block).* ~ (hash("else") ~ block).? ~ hash("fi") ^^
@@ -76,6 +70,14 @@ class MPP(conf: Conf) extends Parsers {
         trueBlock
       else
         elifs.find(elif => parseBoolean(elif._1.expr, elif._1.pos)).orElse(elseBlock).map(_._2).getOrElse(Nil)
+    }
+  
+  def Sep: Parser[Seq[String]] =
+    hash("sep") ~ block ~ hash("endsep") ^^ {
+      case Hash(posSep, exprSep) ~ contents ~ endsep =>
+        if (contents.nonEmpty)
+          contents.init.map(_+exprSep) :+ contents.last
+        else Nil
     }
     
   def parseBoolean(expr: String, pos: Position = NoPosition): Boolean = {

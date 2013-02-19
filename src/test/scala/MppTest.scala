@@ -43,5 +43,14 @@ class MppTest extends MiltammTest {
   test("two ifs in a row") {
     mpp().process(Seq("#if false", "apples", "#fi", "#if true", "bananas", "#fi")) ==== Seq("bananas")
   }
+  test("separated list - empty") {
+    mpp().process(Seq("#sep,", "#endsep")) ==== Seq()
+  }
+  test("separated list - one entry") {
+    mpp().process(Seq("#sep,", "apples", "#endsep")) ==== Seq("apples")
+  }
+  test("separated list - two entries") {
+    mpp().process(Seq("#sep,", "apples", "bananas", "#endsep")) ==== Seq("apples,","bananas")
+  }
 
 }
