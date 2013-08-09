@@ -46,5 +46,5 @@ class RoutesTest extends MiltammTest {
     val route: RT = iff(k) { "tree/apple" >> "tree/banana" }
     route("tree/apple") ==== Action("tree/apple", None, None)
   }
-  
+
 }

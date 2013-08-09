@@ -32,7 +32,7 @@ object Main extends App {
         val action = route(relPath)
         action.to.map(dest => new File(outputDir ++ dest ++ relPath.drop(action.from.size) map ("/"+) mkString)).foreach { dest =>
           println(s"File: $dest")
-          action.transform.fold { 
+          action.transform.fold {
             // short-circuit, since we don't need to transform contents of the file
             FileUtils.copyFile(f, dest)
           } { trans =>
@@ -43,7 +43,7 @@ object Main extends App {
     }
   }
 
-  /** Prepares the template for processing. (by downloading it, if required) 
+  /** Prepares the template for processing. (by downloading it, if required)
     * @return the path to the directory on filesystem, that contains the prepared template
     */
   def prepareTemplate(opts: Options): String = {

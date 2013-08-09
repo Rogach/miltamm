@@ -10,7 +10,7 @@ object Util {
     val WARN = "warn"
     val SUCCESS = "success"
     def log(mess:String, level:String):Unit = {
-      val prefix = 
+      val prefix =
         if (System.console() == null) "[miltamm] "
         else {
          "[\033[%smmiltamm\033[0m] " format (
@@ -29,13 +29,13 @@ object Util {
     def warn(mess:String) = log(mess, WARN)
     def success(mess:String) = log(mess, SUCCESS)
   }
-  
+
   def getTmpDir = sys.props("java.io.tmpdir") + "/miltamm-" + (0 to 8).map(_=> math.random * 10 toInt).mkString
-  
+
   /** Runs the command, connects all streams (in/err/out) to those of the main process, and waits for this process to terminate. */
   def runCommand(command: String, args: String*) = {
     printf("Running: %s %s\n", command, args.mkString(" "))
-    val proc = try { 
+    val proc = try {
       new ProcessBuilder((command +: args):_*).start()
     } catch { case e: java.io.IOException =>
       Util.log.error(s"Failed to find the command: $command")
@@ -88,7 +88,7 @@ object Util {
         } catch { case e: java.io.IOException => }
       }
     }).start()
-    
+
     // pipe stdin to the process
     while (!finished) {
       Thread.sleep(25)

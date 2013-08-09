@@ -5,7 +5,7 @@ import java.io.File
 
 /** Helpers to create and manipulate Route values. */
 trait Routes {
-  /** Creates a route, that ignores the files, starting with some path. 
+  /** Creates a route, that ignores the files, starting with some path.
     * @param p Route only matches files which names start with `p`, and returns `Ignore` action.
     */
   def ignore(p: Path) = new Route(p, None, None, Nil)
@@ -15,7 +15,7 @@ trait Routes {
 
   /** Creates a route, that preprocesses the file contents using MPP. */
   def preprocess(p: Path) = new Route(p, Some(p), Some(MPP), Nil)
-  
+
   def movePreprocess(from: Path, to: Path) = new Route(from, Some(to), Some(MPP), Nil)
 
   /** Creates a route, that copies the file as-is from template to destination. */
@@ -31,13 +31,13 @@ trait Routes {
       def apply(f: Path) = new Action(f, None, None)
     }
   }
-  
+
   /** Implicit converter from string to path. */
   implicit def toPath(s: String) = Path(s)
 
   /** Implicit converter from path to copy route. */
   implicit def pathToRoute(p: Path) = copy(p)
-  
+
   /** Implicit converter from string to copy route. */
   implicit def stringToRoute(s: String) = copy(Path(s))
 
@@ -65,16 +65,16 @@ case class Route(from: Path, to: Option[Path], action: Option[(Conf, Seq[String]
   def isDefinedAt(f: Path) = f.startsWith(from)
 
   /** Get an Action to apply to a given file. */
-  def apply(f: Path) = { 
+  def apply(f: Path) = {
     val ff = f.drop(from.size)
     children.find(_.isDefinedAt(ff))
       .map(_.apply(ff).prepend(from, to.getOrElse(from)))
       .getOrElse(Action(from, action, to))
   }
-  
+
   /** Append some children to this route. */
   def append(routes: Seq[PartialFunction[Path, Action]]) = copy(children = children ++ routes)
-  
+
   /** Replace default action of this route. */
   def withAction(a: (Conf, Seq[String]) => Seq[String]) = copy(action = Some(a))
 

@@ -19,7 +19,7 @@ trait CapturingTest {
     Console.setErr(normalErr)
     (streamOut.toString, streamErr.toString, res)
   }
-  
+
   /** Supresses exit in *fn* block. Returns list of exit statuses that were attempted. */
   def trapExit(fn: => Unit): List[Int] = {
     @volatile var statuses = List[Int]()
@@ -34,13 +34,13 @@ trait CapturingTest {
     System.setSecurityManager(SM)
     try {
       fn
-    } catch { 
+    } catch {
       case e: SecurityException =>
     }
     System.setSecurityManager(normalSM)
     statuses.reverse
   }
-  
+
   /** Supresses exits in *fn* block, and captures stdout/stderr. */
   def captureOutputAndExits(fn: => Unit): (String, String, List[Int]) = {
     captureOutput {
@@ -52,5 +52,5 @@ trait CapturingTest {
   def withInput[A](input: String)(fn: => A): A = {
     Console.withIn(new ByteArrayInputStream(input.getBytes))(fn)
   }
-  
+
 }

@@ -8,8 +8,8 @@ object build extends Build {
       if (f.isDirectory) {
         IO.delete(source / "templates-test" / (f.getName + ".result"))
         IO.copyDirectory(f, source / "templates-test" / (f.getName + ".result"))
-      } else 
-        if (f.isFile && f.getName.endsWith(".output") && f.length > 0) 
+      } else
+        if (f.isFile && f.getName.endsWith(".output") && f.length > 0)
           IO.copyFile(f, source / "templates-test" / f.getName)
     }
   }

@@ -15,7 +15,7 @@ class UserInteractionTest extends MiltammTest with CapturingTest {
       out ==== "What fruit?\n[banana]: "
     }
   }
-  
+
   test ("asking user for a value second time, if at first it didn't parse") {
     withInput("da\nyes") {
       val (out, err, answer) = captureOutput {
@@ -26,7 +26,7 @@ class UserInteractionTest extends MiltammTest with CapturingTest {
       out ==== "fruit?\n[no]: Failed to parse boolean value\nfruit?\n[no]: "
     }
   }
-  
+
   test ("asking user for an integer value") {
     withInput("42") {
       val (out, err, answer) = captureOutput {
@@ -37,7 +37,7 @@ class UserInteractionTest extends MiltammTest with CapturingTest {
       out ==== "n?\n[12]: "
     }
   }
-  
+
   test ("value selects") {
     withInput("2") {
       val (out, err, answer) = captureOutput {
@@ -48,7 +48,7 @@ class UserInteractionTest extends MiltammTest with CapturingTest {
       out ==== "choose one:\n 1 - apple\n 2 - banana\n 3 - peach\n[1]: "
     }
   }
-  
+
   test ("if user enters empty string, use the default") {
     withInput("\n") {
       val (out, err, answer) = captureOutput {
@@ -59,7 +59,7 @@ class UserInteractionTest extends MiltammTest with CapturingTest {
       out ==== "fruit?\n[banana]: "
     }
   }
-  
+
   test ("regex matching") {
     withInput("apple\n12\n") {
       val (out, err, answer) = captureOutput {
@@ -70,7 +70,7 @@ class UserInteractionTest extends MiltammTest with CapturingTest {
       out ==== "n?\n[]: Failed to parse, sorry. The value must match the regex: \\d+\nn?\n[]: "
     }
   }
-  
+
   test ("asking for keys while resolving build template") {
     withInput("42\n") {
       val (out, err, _) = captureOutput {
@@ -81,7 +81,7 @@ class UserInteractionTest extends MiltammTest with CapturingTest {
       out ==== "n?\n[12]: "
     }
   }
-  
+
   test ("caching the key value, not asking two times") {
     withInput("n\n") {
       val (out, err, res) = captureOutput {

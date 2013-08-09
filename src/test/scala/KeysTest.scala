@@ -38,5 +38,5 @@ class KeysTest extends MiltammTest {
     B.a.isDefined ==== true
     B.a.name ==== "a"
   }
-  
+
 }

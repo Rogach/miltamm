@@ -56,14 +56,14 @@ class MPP(conf: Conf) extends Parsers {
          else
            Failure(s"can't match '#$name' on '${in.first}'", in)
   }
-  
+
   def plain: Parser[String] =
     not(hash) ~> elem("plain", _=> true) ^^ (l => conf.keys.foldLeft(l)((line, key) => line.replace("#{" + key.name + "}", key.apply.toString)))
-  
-  def block: Parser[Seq[String]] = 
+
+  def block: Parser[Seq[String]] =
     rep(If | Sep | rep1(plain)) map (_.flatten)
 
-  def If: Parser[Seq[String]] = 
+  def If: Parser[Seq[String]] =
     hash("if") ~ block ~ (hash("elif") ~ block).* ~ (hash("else") ~ block).? ~ hash("fi") ^^
     { case Hash(posIf, exprIf) ~ trueBlock ~ elifs ~ elseBlock ~ fi =>
       if (parseBoolean(exprIf, posIf))
@@ -71,7 +71,7 @@ class MPP(conf: Conf) extends Parsers {
       else
         elifs.find(elif => parseBoolean(elif._1.expr, elif._1.pos)).orElse(elseBlock).map(_._2).getOrElse(Nil)
     }
-  
+
   def Sep: Parser[Seq[String]] =
     hash("sep") ~ block ~ hash("endsep") ^^ {
       case Hash(posSep, exprSep) ~ contents ~ endsep =>
@@ -79,7 +79,7 @@ class MPP(conf: Conf) extends Parsers {
           contents.init.map(_+exprSep) :+ contents.last
         else Nil
     }
-    
+
   def parseBoolean(expr: String, pos: Position = NoPosition): Boolean = {
     import scala.reflect.runtime.universe._;
     val bool = implicitly[TypeTag[Boolean]]
@@ -90,7 +90,7 @@ class MPP(conf: Conf) extends Parsers {
       val andRgx = """(.*)&&(.*)""".r
       val orRgx = """(.*)\|\|(.*)""".r
       expr match {
-        case andRgx(a,b) => 
+        case andRgx(a,b) =>
           (conf.keys.find(_.name == a.trim), conf.keys.find(_.name == b.trim)) match {
             case (Some(ak), Some(bk)) if ak.tp.tpe =:= bool.tpe && bk.tp.tpe =:= bool.tpe  => Some(ak().asInstanceOf[Boolean] && bk().asInstanceOf[Boolean])
             case _ => None
@@ -107,19 +107,19 @@ class MPP(conf: Conf) extends Parsers {
       import scala.tools.reflect.ToolBox;
       val toolbox = universe.runtimeMirror(this.getClass.getClassLoader).mkToolBox()
       import scala.reflect.runtime.universe._;
-      
+
       val booleanTag = implicitly[TypeTag[Boolean]]
       val stringTag = implicitly[TypeTag[String]]
       val intTag = implicitly[TypeTag[Int]]
       val doubleTag = implicitly[TypeTag[Double]]
-      
+
       val vals: Seq[String] = conf.keys.collect {
         case key if key.tp.tpe =:= booleanTag.tpe || key.tp.tpe =:= intTag.tpe || key.tp.tpe =:= doubleTag.tpe =>
           s"val ${key.name} = ${key.apply};"
         case key if key.tp.tpe =:= stringTag.tpe =>
           s""" val ${key.name} = "${key.apply}"; """
       }
-      
+
       try {
         toolbox.eval(toolbox.parse(vals.mkString + expr)) match {
           case b: Boolean => b
@@ -134,5 +134,5 @@ class MPP(conf: Conf) extends Parsers {
       }
     }
   }
-  
+
 }

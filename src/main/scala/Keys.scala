@@ -42,7 +42,7 @@ trait Keys {
       sys.error("Won't happen")
     }
   }
-  
+
   /** Converts Y/N string into boolean value. */
   val boolConverter = (_: String).head.toLower match {
     case 'y' | 't' => Right(true)
@@ -66,23 +66,23 @@ trait Keys {
     * @param q question string
     * @param default Value to use if user entered empty string
     */
-  def bool(q: String, default: Boolean): Key[Boolean] = 
+  def bool(q: String, default: Boolean): Key[Boolean] =
     Key(() => ask(q, if (default) "yes" else "no", boolConverter), implicitly[TypeTag[Boolean]])
-  
+
   /** Create a string key, that would ask the user for a value when computed.
     * @param q question string
     * @param default Value to use if user entered empty string
     */
-  def string(q: String, default: String, rgx: Regex = ".*".r): Key[String] = 
+  def string(q: String, default: String, rgx: Regex = ".*".r): Key[String] =
     Key(() => ask(q, default, check(rgx, Right(_))), implicitly[TypeTag[String]])
-  
+
   /** Create an integer key, that would ask the user for a number when computed.
     * @param q question string
     * @param default Value to use if user entered empty string
     */
-  def int(q: String, default: Int): Key[Int] = 
+  def int(q: String, default: Int): Key[Int] =
     Key(() => ask(q, default.toString, x => Right(x.trim.toInt)), implicitly[TypeTag[Int]])
-  
+
   /** Create an string key, that would ask the user to choose from a number of options when computing.
     * @param q question string
     * @param vals List of tuples - (key, description). Description is shown to the user, key is returned for internal use.
