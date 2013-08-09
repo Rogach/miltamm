@@ -55,6 +55,13 @@ object Main extends App {
       val tmpDir = Util.getTmpDir
       Util.runCommand("rsync", "-avrz", opts.template(), tmpDir)
       tmpDir
+    } else if (!new File(opts.template()).exists) {
+      sys.env.get("MILTAMM_TEMPLATE_PATH").fold(opts.template()) { mtp =>
+        mtp.split(":")
+        .map(_ + "/" + opts.template())
+        .find(tp => new File(tp).isDirectory)
+        .getOrElse(opts.template())
+      }
     } else {
       // everything is already in place
       opts.template()
